@@ -1,0 +1,21 @@
+footer {
+  background-color: #191919;
+  display: flex;
+  gap: 15px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+
+footer button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 10px;
+  font-family: Roboto Condensed;
+  font-weight: 700;
+}
+
+footer button:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}

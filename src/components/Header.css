@@ -1,0 +1,40 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header img {
+  width: 70px;
+}
+
+header button {
+  background-color: transparent;
+  border: none;
+  font-size: 17px;
+  font-family: Roboto Condensed;
+  font-weight: 700;
+  color: #191919;
+}
+
+header button:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.header-left button span {
+  font-size: 12px;
+}
+
+.header-left .selected {
+  color: #ff5f00;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}

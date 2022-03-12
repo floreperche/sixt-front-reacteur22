@@ -1,3 +1,10 @@
+/* CSS for all pages */
+
 body {
   font-family: Roboto;
+}
+
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
 }
