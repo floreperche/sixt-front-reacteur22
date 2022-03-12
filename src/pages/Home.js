@@ -1,6 +1,7 @@
 import "./Home.css";
 import map from "../assets/img/sixt-in-the-world.png";
-import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 // Imports for the carousel
 import { Carousel } from "react-responsive-carousel";
@@ -11,30 +12,15 @@ import carousel3 from "../assets/img/carousel/carousel-3.jpeg";
 const Home = () => {
   return (
     <div className="wrapper">
+      <Header type="home" />
       {/* Subtitle with transportation types */}
       <div className="transportation-type">
-        <button>VOITURES</button>
+        <button className="selected">VOITURES</button>
         <button>UTILITAIRES</button>
       </div>
 
       {/* Search bar */}
-      <div className="search-bar">
-        <div>
-          <p>Retrait et retour</p>
-          <input></input>
-        </div>
-        <div>
-          <p>Date de départ</p>
-          <div>Date et heure</div>
-        </div>
-        <div>
-          <p>Date de retour</p>
-          <div>Date et heure</div>
-        </div>
-        <Link to="/offerlist">
-          <button> Offers</button>
-        </Link>
-      </div>
+      <SearchBar type="with-button" />
 
       {/* Carousel */}
       <Carousel
@@ -44,19 +30,19 @@ const Home = () => {
         autoPlay="true"
       >
         <div>
-          <img src={carousel1} />
+          <img src={carousel1} alt="first carousel" />
         </div>
         <div>
-          <img src={carousel2} />
+          <img src={carousel2} alt="second carousel" />
         </div>
         <div>
-          <img src={carousel3} />
+          <img src={carousel3} alt="third carousel" />
         </div>
       </Carousel>
 
       {/* Rest of Home Page :  Map + App and social media infos */}
       <div className="map">
-        <h2>LES AGENCES SIXT DANS LE MONDE</h2>
+        <p>Les agences SIXT dans le monde</p>
         <div>
           <img src={map} alt="sixt in the world" />
           <button>TROUVER L'AGENCE</button>
@@ -64,7 +50,7 @@ const Home = () => {
       </div>
       <div className="app-and-social">
         <p>TELECHARGEZ L'APP SIXT</p>
-        <div>
+        <div className="app-download">
           <button>
             <i className="ico-apple-logo" />
           </button>
@@ -73,7 +59,7 @@ const Home = () => {
           </button>
         </div>
         <p>SUIVEZ-NOUS</p>
-        <div>
+        <div className="social-medias">
           <i className="ico-fb-logo" />
           <i className="ico-twitter-logo" />
           <i className="ico-instagram-logo" />

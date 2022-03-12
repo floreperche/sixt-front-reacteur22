@@ -1,0 +1,13 @@
+.perso-details .reservation {
+  background-color: #ff5f00;
+  color: white;
+  border: none;
+  padding: 10px 70px;
+  font-family: Roboto Condensed;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.perso-details .reservation:hover {
+  background-color: #ff6e19;
+}
