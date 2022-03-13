@@ -9,7 +9,20 @@ import carousel1 from "../assets/img/carousel/carousel-1.jpeg";
 import carousel2 from "../assets/img/carousel/carousel-2.jpeg";
 import carousel3 from "../assets/img/carousel/carousel-3.jpeg";
 
-const Home = () => {
+const Home = ({
+  selectedAgency,
+  setSelectedAgency,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  testData,
+  setTestData,
+  numberOfDays,
+  setNumberOfDays,
+}) => {
+  console.log(testData);
+
   return (
     <div className="wrapper">
       <Header type="home" />
@@ -20,7 +33,19 @@ const Home = () => {
       </div>
 
       {/* Search bar */}
-      <SearchBar type="with-button" />
+      <SearchBar
+        type="with-button"
+        selectedAgency={selectedAgency}
+        setSelectedAgency={setSelectedAgency}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+        testData={testData}
+        setTestData={setTestData}
+        numberOfDays={numberOfDays}
+        setNumberOfDays={setNumberOfDays}
+      />
 
       {/* Carousel */}
       <Carousel

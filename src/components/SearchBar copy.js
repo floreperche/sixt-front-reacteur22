@@ -6,7 +6,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./SearchBar.css";
 import { registerLocale } from "react-datepicker";
-import { formatDistanceStrict } from "date-fns";
 registerLocale("fr", fr);
 
 const SearchBar = ({
@@ -17,8 +16,8 @@ const SearchBar = ({
   setStartDate,
   endDate,
   setEndDate,
-  numberOfDays,
-  setNumberOfDays,
+  testData,
+  setTestData,
 }) => {
   const [searchText, setSearchText] = useState("");
   const [agencyList, setAgencyList] = useState([]);
@@ -61,18 +60,7 @@ const SearchBar = ({
         setEndTime(true);
       }
     }
-    if (startDate && endDate) {
-      let result = formatDistanceStrict(startDate, endDate, {
-        unit: "minute",
-      });
-      result = Math.ceil(
-        Number(result.substring(0, result.indexOf(" "))) / 60 / 24
-      );
-      console.log(result);
-
-      setNumberOfDays(result);
-    }
-  }, [startDate, endDate, setNumberOfDays]);
+  }, [startDate, endDate]);
 
   // Search bar from Home Page (with button)
   return (
@@ -83,7 +71,16 @@ const SearchBar = ({
 
           <div className="agency-search">
             <i className="ico-search"></i>
-
+            <input
+              onChange={(elem) => {
+                setTestData(elem.target.value);
+              }}
+              value={testData}
+            ></input>{" "}
+            <p>test data : {testData}</p>
+            <Link to="/offerlist">
+              <button>Offers</button>
+            </Link>
             <input
               onChange={(elem) => {
                 setSelectedAgency();

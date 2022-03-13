@@ -1,0 +1,141 @@
+.start-date input,
+.end-date input {
+  background-color: transparent;
+  color: white;
+  border: none;
+  color: white;
+  font-family: Roboto Condensed;
+  font-weight: 700;
+  font-size: 20px;
+  padding-left: 10px;
+  width: 95%;
+  border-bottom: 2px solid white;
+  padding: 5px;
+}
+
+.start-date input:focus,
+.end-date input:focus {
+  outline: none;
+}
+
+.react-datepicker {
+  border: none;
+}
+
+.react-datepicker__month-container,
+.react-datepicker__time-container {
+  background-color: #ffffff;
+  font-family: Roboto Condensed;
+  font-size: 15px;
+}
+
+.react-datepicker__month-container .react-datepicker__header {
+  background-color: #ffffff;
+  padding: 10px 30px;
+  border-bottom: none;
+}
+
+.react-datepicker__header--time {
+  background-color: #ffffff;
+  border: none;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected {
+  background-color: #ff5f00;
+  border-radius: 0;
+}
+
+.react-datepicker__day--keyboard-selected:hover,
+.react-datepicker__month-text--keyboard-selected:hover,
+.react-datepicker__quarter-text--keyboard-selected:hover,
+.react-datepicker__year-text--keyboard-selected:hover {
+  background-color: #f87529;
+  border-radius: 0;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item--selected {
+  background-color: #ff5f00;
+  border-radius: 0;
+}
+
+.react-datepicker__day--selected:hover,
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item--selected:hover {
+  background-color: #f87529;
+  border-radius: 0;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}
+
+.react-datepicker__current-month {
+  text-transform: uppercase;
+  font-family: Roboto Condensed;
+  font-weight: 700;
+  font-size: 20px;
+  /* padding: 20px; */
+}
+
+/* .agency-search {
+
+} */
+
+.agency-box {
+  position: absolute;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  left: 0;
+  margin-top: 8px;
+  z-index: 50;
+  color: black;
+  width: 600px;
+}
+
+.search-bar .search-text .agency-box {
+  /* border-bottom: 2px solid white;
+    padding: 5px;
+    display: flex; */
+  align-items: start;
+}
+
+.search-bar .agency-box p {
+  color: black;
+  font-size: 16px;
+  padding: 10px 0px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-bar .agency-box p i {
+  color: #ff5f00;
+}
+
+.search-bar .unselected,
+.search-bar .unselected:hover {
+  background-color: #ff5e0023;
+  color: rgba(255, 255, 255, 0.356);
+}
+
+.error-message {
+  background-color: #191919;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+  color: #ff1100;
+  gap: 15px;
+}

@@ -46,7 +46,7 @@ const Header = ({ type, step }) => {
       {/* Header right : Access to backoffice */}
       <Link to="/admin">
         <button>
-          <i class="ico-planet"></i> BACKOFFICE
+          <i className="ico-planet"></i> BACKOFFICE
         </button>
       </Link>
     </header>

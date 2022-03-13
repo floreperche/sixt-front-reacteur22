@@ -47,6 +47,7 @@
 
 .search-bar .search-text {
   flex: 5;
+  position: relative;
 }
 
 .search-bar .search-text div {
