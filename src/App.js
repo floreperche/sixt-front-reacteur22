@@ -18,6 +18,7 @@ function App() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [numberOfDays, setNumberOfDays] = useState();
+  const [selectedCar, setSelectedCar] = useState();
 
   return (
     <Router>
@@ -49,10 +50,27 @@ function App() {
               setEndDate={setEndDate}
               numberOfDays={numberOfDays}
               setNumberOfDays={setNumberOfDays}
+              setSelectedCar={setSelectedCar}
             />
           }
         ></Route>
-        <Route path="/offerconfig" element={<Configuration />}></Route>
+        <Route
+          path="/offerconfig"
+          element={
+            <Configuration
+              selectedAgency={selectedAgency}
+              setSelectedAgency={setSelectedAgency}
+              startDate={startDate}
+              setStartDate={setStartDate}
+              endDate={endDate}
+              setEndDate={setEndDate}
+              numberOfDays={numberOfDays}
+              setNumberOfDays={setNumberOfDays}
+              selectedCar={selectedCar}
+              setSelectedCar={setSelectedCar}
+            />
+          }
+        ></Route>
         <Route path="/personaldetails" element={<PersoDetails />}></Route>
         <Route path="/admin" element={<Admin />}></Route>
       </Routes>

@@ -68,13 +68,12 @@ const SearchBar = ({
       result = Math.ceil(
         Number(result.substring(0, result.indexOf(" "))) / 60 / 24
       );
-      console.log(result);
+      // console.log(result);
 
       setNumberOfDays(result);
     }
   }, [startDate, endDate, setNumberOfDays]);
 
-  // Search bar from Home Page (with button)
   return (
     <div>
       <div className="search-bar">
@@ -93,6 +92,7 @@ const SearchBar = ({
                 }
               }}
               value={selectedAgency ? selectedAgency.title : searchText}
+              placeholder="Trouver une agence"
             ></input>
           </div>
 
@@ -138,6 +138,7 @@ const SearchBar = ({
               minTime={minTime}
               maxTime={maxTime}
               timeCaption="HEURE"
+              placeholderText="Saisir un départ"
             />
           </div>
         </div>
@@ -157,6 +158,7 @@ const SearchBar = ({
               maxTime={maxTime}
               timeFormat="HH:mm"
               timeCaption="HEURE"
+              placeholderText="Saisir une retour"
             />
           </div>
         </div>
@@ -182,15 +184,15 @@ const SearchBar = ({
             )}
           </div>
         )}
-
-        {/* {type === "with-button" && ()} */}
       </div>
-      <div className="error-message">
-        {errorMessage}{" "}
-        {errorMessage && (
-          <i className="ico-close" onClick={() => setErrorMessage()} />
-        )}
-      </div>
+      {errorMessage && (
+        <div className="error-message">
+          {errorMessage}{" "}
+          {errorMessage && (
+            <i className="ico-close" onClick={() => setErrorMessage()} />
+          )}
+        </div>
+      )}
     </div>
   );
 };

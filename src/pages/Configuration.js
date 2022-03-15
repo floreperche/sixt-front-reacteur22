@@ -1,150 +1,167 @@
 import "./Configuration.css";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
-import tesla from "../assets/img/tesla.jpg";
+import PriceDetailsModal from "../components/PriceDetailsModal";
+import OptionsCarousel from "../components/OptionsCarousel";
+import axios from "axios";
 
-const Configuration = () => {
+const Configuration = ({
+  selectedAgency,
+  setSelectedAgency,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  numberOfDays,
+  setNumberOfDays,
+  selectedCar,
+  setSelectedCar,
+}) => {
+  const [toReload, setToReload] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (selectedCar) {
+        console.log(selectedCar);
+        const fetchData = async () => {
+          const response = await axios.get(
+            `http://localhost:3003/cardetails?id=${selectedCar.id}`
+          );
+          console.log(response.data);
+        };
+        fetchData();
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [selectedCar, setSelectedCar]);
+
+  const priceCalcul = () => {
+    let totalPriceCalcul = numberOfDays * selectedCar.price;
+    for (let i = 0; i < selectedCar.carDetails.additionalCharges.length; i++) {
+      if (selectedCar.carDetails.additionalCharges[i].amount === 1) {
+        if (
+          selectedCar.carDetails.additionalCharges[i].price.unit === "jour" ||
+          selectedCar.carDetails.additionalCharges[i].price.unit ===
+            "jour/unité"
+        ) {
+          totalPriceCalcul +=
+            selectedCar.carDetails.additionalCharges[i].price.amount *
+            numberOfDays;
+        } else {
+          totalPriceCalcul +=
+            selectedCar.carDetails.additionalCharges[i].price.amount;
+        }
+      }
+    }
+    for (let j = 0; j < selectedCar.carDetails.extraFees.length; j++) {
+      totalPriceCalcul += selectedCar.carDetails.extraFees[j].price.amount;
+    }
+    return totalPriceCalcul.toFixed(2);
+  };
+
   return (
     <div className="config wrapper">
       <Header type="steps" step="two" />
-      <SearchBar type="without-button" />
+      <SearchBar
+        type="without-button"
+        selectedAgency={selectedAgency}
+        setSelectedAgency={setSelectedAgency}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+        numberOfDays={numberOfDays}
+        setNumberOfDays={setNumberOfDays}
+      />
       <div className="intro-car">
-        <img src={tesla} alt="" />
-        <h3>TESLA MODEL </h3>
+        <img src={selectedCar.carDetails.splashImages[0]} alt="" />
+        <h3>{selectedCar.name} </h3>
       </div>
       <div className="car-subtitles">
-        <p>TESLA, LA MEILLEURE VOITURE ?</p>
+        <p>{selectedCar.longSubline}</p>
         <div>
           <div>
-            <i className="ico-maxPassengers" />5 sièges
+            <i className="ico-maxPassengers" /> {selectedCar.seats} sièges
           </div>
           <div>
-            <i className="ico-doors" />4 portes
+            <i className="ico-doors" /> {selectedCar.doors} portes
           </div>
           <div>
-            <i className="ico-automatic" />
-            Automatique
+            <i className="ico-automatic" />{" "}
+            {selectedCar.automatic ? <>Automatique</> : <>Manuelle</>}
           </div>
           <div>
-            <i className="ico-baggage" />2 bagages
+            <i className="ico-baggage" /> {selectedCar.baggage} bagages
           </div>
+          {selectedCar.airCondition && (
+            <div>
+              <i className="ico-airCondition" /> Climatisation
+            </div>
+          )}
+
           <div>
-            <i className="ico-airCondition" />
-            Climatisation
-          </div>
-          <div>
-            <i className="ico-driverRequirements" />
-            21 ans
+            <i className="ico-driverRequirements" /> {selectedCar.driverMinAge}{" "}
+            ans
           </div>
         </div>
       </div>
       <div className="car-details">
         <div className="details-left">
-          <h3>CHOISSISSEZ VOTRE PROTECTION ET VOS OPTIONS</h3>
-          <p>VOTRE OFFRE INCLUT</p>
-          <p>CHOISISSEZ VOS OPTIONS</p>
-          <div className="options-carousel">
-            <div className="options-card">
-              <div>
-                <i className="ico-carshield" />
-                <p>PROTEGEZ VOTRE LOCATION</p>
-              </div>
-              <p>Protection vol et collision USD 0 de franchise</p>
+          <h2>CHOISSISSEZ VOTRE PROTECTION ET VOS OPTIONS</h2>
+          <div>
+            <h3>VOTRE OFFRE INCLUT</h3>
+            <div className="included-list">
+              {selectedCar.carDetails.includedCharges.map((includedCharges) => {
+                return (
+                  <p>
+                    <i className="ico-bullet-sm" /> {includedCharges.title}
+                  </p>
+                );
+              })}
+              {selectedCar.carDetails.additionalCharges.map((elem) => {
+                console.log("elem >", elem);
+                return (
+                  elem.amount === 1 && (
+                    <p>
+                      <i className="ico-bullet-sm" /> {elem.title}
+                    </p>
+                  )
+                );
+              })}
             </div>
-            <div className="options-card">
-              <div>
-                <i className="ico-charges" />
-                <p>PEAGE EXPRESS ILLIMITE</p>
-              </div>
-              <p>
-                Choisissez la voie rapide avec une nutilisation illimitée des
-                voes de péage automatisées pour un prix fixe
-              </p>
-            </div>
-            <div className="options-card">
-              <div>
-                <i className="ico-wifi" />
-                <p>SIXT CONNECT PLUS</p>
-              </div>
-              <p>
-                Restez connecté 24h/24 et 7j/7 avec le Wi-Fi et 60 minutes
-                d'appels gratuits pour un maximum de 5 appareils
-              </p>
-            </div>
-            <div className="options-card">
-              <div>
-                <i className="ico-satnav" />
-                <p>SYSTEME DE NAVIGATION GARANTI</p>
-              </div>
-              <p>Trouvez le meilleur itinétaire avec le GPS</p>
-            </div>
-            <div className="options-card">
-              <div>
-                <i className="ico-refill" />
-                <p>VEHICULE PRIS RESERVOIR PLEIN - RETOUR A VIDE</p>
-              </div>
-              <p>
-                SIXT fait le plein pour vous, une fois le véhicule rendu, à un
-                tarif fixe
-              </p>
-            </div>
-            <div className="options-card">
-              <div>
-                <i className=" ico-wifi" />
-                <p>SIXT CONNECT</p>
-              </div>
-              <p>
-                Restez connecté 24h/24 et 7j/7 avec le Wi-Fi pour un maximum de
-                5 appareils
-              </p>
-            </div>
-            <div className="options-card">
-              <div>
-                <i className="ico-personplusbig" />
-                <p>CONDUCTEUR SUPPLEMENTAIRE</p>
-              </div>
-            </div>
-            <div className="options-card">
-              <div>
-                <i className="ico-mailinvoice" />
-                <p>ENVOI FACTURE PAR COURIER</p>
-              </div>
-              <p>Recevez votre facture par la poste</p>
-            </div>
-            <div className="options-card">
-              <div>
-                <i className="ico-sixt-logo-sm" />
-                <p>PARKING PASS UNLIMITED</p>
-              </div>
-              <p>
-                Plus de confort grâce à l'accès aux aires de stationnement et
-                aux garages du réseau Way
-              </p>
-            </div>
-            <div className="options-card">
-              <div>
-                <i className="ico-childseat" />
-                <p>SIEGES BEBE</p>
-              </div>
-            </div>
+          </div>
+
+          <div>
+            <h3>CHOISISSEZ VOS OPTIONS</h3>
+            <OptionsCarousel
+              selectedCar={selectedCar}
+              setSelectedCar={setSelectedCar}
+              setToReload={setToReload}
+              toReload={toReload}
+            />
           </div>
         </div>
         <div className="details-right">
           <div>
-            <p>TOTAL</p>
-            <p>
-              € <span>1797</span>,41
+            <p className="black">TOTAL</p>
+            <p className="price-value">
+              € <span>{priceCalcul()}</span>
             </p>
           </div>
           <div>
-            <p>
-              <i className="ico-chevron-right" /> Details du prix
-            </p>
+            <PriceDetailsModal
+              numberOfDays={numberOfDays}
+              selectedCar={selectedCar}
+              priceCalcul={priceCalcul}
+            />
             <p>Taxes incluses</p>
           </div>
+
           <Link to="/personaldetails">
-            <button> Personal details</button>
+            <button>CONTINUER</button>
           </Link>
         </div>
       </div>

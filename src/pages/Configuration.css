@@ -4,7 +4,7 @@
 
 .config .intro-car img {
   width: 100%;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
   vertical-align: top;
 }
@@ -18,7 +18,7 @@
   font-family: Roboto Condensed;
   font-weight: 700;
   padding: 3px 0px;
-  font-size: 24px;
+  font-size: 34px;
 }
 
 .config .car-subtitles {
@@ -50,24 +50,226 @@
 
 .config .car-details .details-left {
   flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
-.config .car-details .details-left .options-carousel {
+.config .car-details .details-left > div {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
 }
 
+.config .car-details .details-left h2,
+.config .car-details .details-left h3 {
+  font-family: Roboto Condensed;
+  font-weight: bold;
+}
+
+.config .car-details .details-left h2 {
+  font-size: 24px;
+}
+
+.config .car-details .details-left h3 {
+  font-size: 18px;
+}
+
+/* Included list */
+.included-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.included-list p {
+  flex: 45%;
+  font-size: 14px;
+}
+
+/* Options carousel */
+.config .car-details .details-left .options-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
 .config .car-details .details-left .options-carousel .options-card {
-  flex: 48%;
+  background-color: transparent;
+  flex: 45%;
+  padding: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.config .car-details .details-left .options-carousel .selected {
   background-color: white;
 }
 
-.options-card i {
+.config .car-details .details-left .options-carousel .unselected {
+  background-color: black;
+  color: white;
+}
+
+.config .car-details .details-left .options-carousel .see-more {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.config .car-details .details-left .options-carousel .see-more,
+.config .car-details .details-left .options-carousel .see-more i {
+  color: white;
+}
+
+.options-card > i {
   color: #ff5f00;
+  font-size: 24px;
+}
+
+.options-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.options-card h3 {
+  font-family: Roboto Condensed;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.options-card .price {
+  font-family: Rokkitt;
+}
+
+.options-card .price span {
   font-size: 24px;
 }
 
 .config .car-details .details-right {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: fit-content;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+}
+
+.config .car-details .details-right > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: white;
+  font-size: 14px;
+}
+.config .car-details .details-right .black {
+  color: black;
+  font-style: 16px;
+  font-family: Roboto Condensed;
+  font-weight: bold;
+}
+
+.config .car-details .details-right .price-value {
+  font-family: Rokkitt;
+  font-size: 24px;
+}
+
+.config .car-details .details-right .price-value span {
+  font-size: 34px;
+}
+
+.config .car-details .details-right button {
+  width: 100%;
+  background-color: #ffffff;
+  color: #ff5f00;
+  padding: 10px;
+  border: none;
+  font-family: Roboto Condensed;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Price detail modal */
+.price-modal-background {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.781);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 40;
+}
+
+.price-modal-window {
+  background-color: #ffffff;
+  color: #191919;
+  padding: 30px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.price-modal-window > i,
+.price-modal-window > p {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  font-family: Roboto Condensed;
+}
+
+.price-modal-window h2 {
+  font-family: Roboto Condensed;
+  font-weight: bold;
+  font-size: 40px;
+  padding-bottom: 10px;
+}
+
+.price-modal-window h3 {
+  font-family: Roboto Condensed;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.price-subdivision {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.price-subdivision div {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.price-subdivision p {
+  font-size: 14px;
+}
+
+.price-subdivision .price {
+  font-size: 20px;
+  font-family: Rokkitt;
+}
+
+.car-modal-total {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.car-modal-total p {
+  font-family: Rokkitt;
+  font-size: 20px;
+}
+
+.car-modal-total span {
+  font-size: 40px;
 }
