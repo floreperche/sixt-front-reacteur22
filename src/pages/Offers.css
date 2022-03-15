@@ -58,3 +58,37 @@
 .car-card .day span {
   font-size: 28px;
 }
+
+.car-modal {
+  position: absolute;
+  width: 900px;
+  height: 300px;
+  background-color: #191919;
+  color: white;
+  display: flex;
+}
+
+.car-modal img {
+  width: 50%;
+}
+
+.carousel-car-wrapper {
+  width: 70%;
+  height: 100%;
+}
+
+.carousel-car-wrapper > div {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-car-wrapper > div > div {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-car-wrapper img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
