@@ -162,6 +162,7 @@
   border-radius: 5px;
   font-size: 30px;
   padding: 5px 30px;
+  cursor: pointer;
 }
 
 .app-and-social p {
@@ -178,4 +179,5 @@
 
 .app-and-social .social-medias i {
   font-size: 26px;
+  cursor: pointer;
 }

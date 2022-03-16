@@ -115,6 +115,7 @@ const CarFilter = ({ typeFilter, setTypeFilter, setIsLoading }) => {
               }
               setTypeFilter(newTypeFilter);
               setIsLoading(true);
+              setIsOpen(false);
             }}
             className="reset-button"
           >

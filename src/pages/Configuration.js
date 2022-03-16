@@ -21,10 +21,11 @@ const Configuration = ({
 }) => {
   const [toReload, setToReload] = useState(false);
 
+  // ça sert à quoi ?????
   useEffect(() => {
     try {
       if (selectedCar) {
-        console.log(selectedCar);
+        // console.log(selectedCar);
         const fetchData = async () => {
           const response = await axios.get(
             `http://localhost:3003/cardetails?id=${selectedCar.id}`
@@ -122,7 +123,7 @@ const Configuration = ({
                 );
               })}
               {selectedCar.carDetails.additionalCharges.map((elem) => {
-                console.log("elem >", elem);
+                // console.log("elem >", elem);
                 return (
                   elem.amount === 1 && (
                     <p>
@@ -161,7 +162,40 @@ const Configuration = ({
           </div>
 
           <Link to="/personaldetails">
-            <button>CONTINUER</button>
+            <button
+              onClick={() => {
+                let newSelectedCar = selectedCar;
+                newSelectedCar.totalPrice = Number(priceCalcul());
+                newSelectedCar.locationPrice = Number(
+                  (numberOfDays * selectedCar.price).toFixed(2)
+                );
+                const selectedOptions = [];
+                const options = newSelectedCar.carDetails.additionalCharges;
+                for (let i = 0; i < options.length; i++) {
+                  if (options[i].amount === 1) {
+                    if (
+                      options[i].price.unit === "jour" ||
+                      options[i].price.unit === "jour/unité"
+                    ) {
+                      selectedOptions.push({
+                        title: options[i].title,
+                        totalPrice: (
+                          options[i].price.amount * numberOfDays
+                        ).toFixed(2),
+                      });
+                    } else {
+                      selectedOptions.push({
+                        title: options[i].title,
+                        totalPrice: options[i].price.amount.toFixed(2),
+                      });
+                    }
+                  }
+                }
+                newSelectedCar.selectedAdditionalCharges = selectedOptions;
+              }}
+            >
+              CONTINUER
+            </button>
           </Link>
         </div>
       </div>

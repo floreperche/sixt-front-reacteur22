@@ -127,19 +127,6 @@ const Offers = ({
     }
   }, [selectedAgency, startDate, endDate, typeFilter]);
 
-  // const setCarModal = async (elem, index) => {
-  //
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:3003/cardetails?id=${elem.id}`
-  //     );
-  //     setCarDetails(response.data);
-  //     console.log(response.data.splashImages[1]);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
-
   return (
     <div className="wrapper">
       <Header type="steps" step="one" />

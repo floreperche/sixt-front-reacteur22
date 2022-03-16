@@ -82,7 +82,7 @@ const OptionsCarousel = ({
           className="options-card see-more"
           onClick={() => setExtendOptions(false)}
         >
-          <i className="ico-close" /> <p>Voir moins d'options</p>
+          <i className="ico-minus-sign" /> <p>Voir moins d'options</p>
         </div>
       )}
     </div>
