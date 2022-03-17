@@ -1,11 +1,10 @@
 import "./Configuration.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import PriceDetailsModal from "../components/PriceDetailsModal";
 import OptionsCarousel from "../components/OptionsCarousel";
-import axios from "axios";
 
 const Configuration = ({
   selectedAgency,
@@ -20,24 +19,6 @@ const Configuration = ({
   setSelectedCar,
 }) => {
   const [toReload, setToReload] = useState(false);
-
-  // ça sert à quoi ?????
-  useEffect(() => {
-    try {
-      if (selectedCar) {
-        // console.log(selectedCar);
-        const fetchData = async () => {
-          const response = await axios.get(
-            `http://localhost:3003/cardetails?id=${selectedCar.id}`
-          );
-          console.log(response.data);
-        };
-        fetchData();
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  }, [selectedCar, setSelectedCar]);
 
   const priceCalcul = () => {
     let totalPriceCalcul = numberOfDays * selectedCar.price;

@@ -218,7 +218,9 @@
 }
 
 .price-modal-window > i,
-.price-modal-window > p {
+.price-modal-window > p,
+.booking-recap > i,
+.booking-recap > p {
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -232,7 +234,8 @@
   padding-bottom: 10px;
 }
 
-.price-modal-window h3 {
+.price-modal-window h3,
+.booking-recap h3 {
   font-family: Roboto Condensed;
   font-weight: bold;
   font-size: 20px;
@@ -259,17 +262,26 @@
   font-family: Rokkitt;
 }
 
-.car-modal-total {
+.car-modal-total,
+.booking-recap-total {
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.car-modal-total p {
+.car-modal-total p,
+.booking-recap-total p {
   font-family: Rokkitt;
   font-size: 20px;
 }
 
-.car-modal-total span {
+.car-modal-total span,
+.booking-recap-total span {
   font-size: 40px;
+}
+
+.right {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 }

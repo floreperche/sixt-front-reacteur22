@@ -71,7 +71,23 @@ function App() {
             />
           }
         ></Route>
-        <Route path="/personaldetails" element={<PersoDetails />}></Route>
+        <Route
+          path="/personaldetails"
+          element={
+            <PersoDetails
+              selectedAgency={selectedAgency}
+              setSelectedAgency={setSelectedAgency}
+              startDate={startDate}
+              setStartDate={setStartDate}
+              endDate={endDate}
+              setEndDate={setEndDate}
+              numberOfDays={numberOfDays}
+              setNumberOfDays={setNumberOfDays}
+              selectedCar={selectedCar}
+              setSelectedCar={setSelectedCar}
+            />
+          }
+        ></Route>
         <Route path="/admin" element={<Admin />}></Route>
       </Routes>
       <Footer />

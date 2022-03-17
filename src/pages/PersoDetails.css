@@ -1,8 +1,101 @@
+.perso-details {
+  font-family: Roboto Condensed;
+}
+
+/* Personal informations */
+.perso-details h2 {
+  font-weight: 700;
+  font-size: 22px;
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid #191919;
+}
+
+.personal-infos,
+.booking-recap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.personal-infos > div {
+  display: flex;
+  gap: 60px;
+}
+
+.perso-input > input,
+.perso-input > div {
+  flex: 45%;
+}
+
+.perso-input > div {
+  display: flex;
+  gap: 20px;
+}
+
+.perso-input > div > input {
+  flex: 45%;
+}
+
+.personal-infos input:focus {
+  outline: none;
+}
+
+.personal-infos input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid grey;
+  line-height: 30px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.personal-infos > input {
+  max-width: 47%;
+}
+
+.birthday {
+  width: 65%;
+}
+
+/* Booking recap */
+.booking-recap {
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgb(192, 192, 192);
+  margin-bottom: 30px;
+}
+
+.price-subdivision .included-list-recap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Button */
+.go-booking {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0px 14px;
+  padding-bottom: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.go-booking span {
+  color: #ff6e19;
+}
+
 .perso-details .reservation {
   background-color: #ff5f00;
   color: white;
   border: none;
-  padding: 10px 70px;
+  width: fit-content;
+  padding: 10px 90px;
   font-family: Roboto Condensed;
   font-weight: 700;
   font-size: 16px;
@@ -10,4 +103,65 @@
 
 .perso-details .reservation:hover {
   background-color: #ff6e19;
+}
+
+/* Confirmation modal */
+.confirmation-modal-background {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.781);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 40;
+}
+
+.confirmation-modal-window {
+  background-color: #ffffff;
+  color: #191919;
+  padding: 30px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.confirmation-modal-window {
+  background-color: #ffffff;
+  color: #191919;
+  padding: 30px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.confirmation-modal-window h3 {
+  font-family: Roboto Condensed;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.confirmation-modal-window div {
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+.confirmation-modal-window span {
+  font-family: Rokkitt;
+  font-size: 20px;
+}
+
+.confirmation-modal-window a {
+  color: #191919;
+  text-decoration: none;
+}
+
+.confirmation-close {
+  display: flex;
+  justify-content: flex-end;
 }

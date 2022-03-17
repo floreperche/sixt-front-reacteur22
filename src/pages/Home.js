@@ -21,8 +21,6 @@ const Home = ({
   numberOfDays,
   setNumberOfDays,
 }) => {
-  console.log(testData);
-
   return (
     <div className="wrapper">
       <Header type="home" />

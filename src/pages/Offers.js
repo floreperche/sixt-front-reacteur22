@@ -41,7 +41,7 @@ const Offers = ({
           const response = await axios.get(
             `http://localhost:3003/rentaloffers${toAdd}`
           );
-          console.log(response.data);
+          // console.log(response.data);
           const newOfferList = [];
           let filterCheck = false;
           if (
@@ -118,7 +118,7 @@ const Offers = ({
           }
           setOfferList(newOfferList);
           setIsLoading(false);
-          console.log(newOfferList);
+          // console.log(newOfferList);
         };
         fetchData();
       }
