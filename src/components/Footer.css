@@ -4,6 +4,8 @@ footer {
   gap: 15px;
   padding: 20px 10px;
   box-sizing: border-box;
+  height: 10vh;
+  box-sizing: border-box;
 }
 
 footer button {

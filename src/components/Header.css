@@ -3,6 +3,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 5px;
+  height: 510h;
+  box-sizing: border-box;
 }
 
 .header-left {
@@ -39,8 +41,21 @@ header button:hover {
   text-underline-offset: 5px;
 }
 
-/* Step follower */
+.log-out {
+  color: #ff5f00;
+  margin-left: 20px;
+  margin-right: 10px;
+  padding: 6px;
+  border: 1px solid #ff5f00;
+}
 
+.log-out:hover {
+  background-color: #ff5f00;
+  color: white;
+  text-decoration: none;
+}
+
+/* Step follower */
 header .step-follower {
   font-family: Roboto Condensed;
   font-weight: 700;

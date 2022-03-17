@@ -8,6 +8,17 @@
   font-family: Roboto Condensed;
 }
 
+.no-result {
+  font-family: Roboto Condensed;
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+  height: 50vh;
+  box-sizing: border-box;
+  background-color: #ff5f00;
+  color: white;
+}
+
 .car-filter {
   position: relative;
 }
@@ -127,14 +138,15 @@
 }
 
 .car-modal {
-  /* max-width: 1500px; */
   height: 400px;
   background-color: #191919;
   color: white;
   display: flex;
+  justify-content: center;
   z-index: 50;
   box-sizing: border-box;
-  margin-right: 50px;
+  /* margin-right: 50px; */
+  font-family: Roboto Condensed;
 }
 
 /* .car-modal img {
@@ -215,7 +227,24 @@
   width: 100%;
   background-color: #ff5f00;
   color: white;
-  font-size: 20px;
+  font-size: 22px;
   padding: 20px 0px;
   border: none;
+  font-family: Roboto Condensed;
+  margin-top: 30px;
+}
+
+.car-modal .price-div {
+  display: flex;
+  align-items: flex-end;
+  font-weight: bold;
+}
+
+.car-modal .price {
+  font-family: Rokkitt;
+  font-weight: 400;
+}
+
+.car-modal .price span {
+  font-size: 30px;
 }

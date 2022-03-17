@@ -23,6 +23,13 @@
   gap: 24px;
 }
 
+.personal-infos .error-message {
+  background-color: rgba(255, 0, 0, 0.144);
+  color: rgb(185, 10, 10);
+  justify-content: space-between;
+  padding: 20px;
+}
+
 .personal-infos > div {
   display: flex;
   gap: 60px;
@@ -52,14 +59,44 @@
   border-bottom: 2px solid grey;
   line-height: 30px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 18px;
+  font-family: Roboto Condensed;
+  color: #ff5f00;
+  letter-spacing: 0.5px;
 }
 .personal-infos > input {
   max-width: 47%;
 }
 
+.personal-infos input::placeholder {
+  color: rgb(66, 66, 66);
+}
+
 .birthday {
   width: 65%;
+}
+
+.personal-infos .react-datepicker__heade button,
+.personal-infos .react-datepicker__header--custom button,
+.personal-infos .react-datepicker__heade select,
+.personal-infos .react-datepicker__header--custom select {
+  background-color: rgb(199, 199, 199);
+  border: none;
+  margin: 2px;
+  padding: 5px;
+  font-family: Roboto Condensed;
+}
+
+.personal-infos .react-datepicker__heade button,
+.personal-infos .react-datepicker__header--custom button {
+  background-color: transparent;
+}
+
+.personal-infos .react-datepicker__heade select,
+.personal-infos .react-datepicker__header--custom select option {
+  background-color: transparent;
+  font-family: Roboto Condensed;
+  border: none;
 }
 
 /* Booking recap */

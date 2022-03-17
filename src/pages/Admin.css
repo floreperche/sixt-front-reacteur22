@@ -1,0 +1,129 @@
+.admin-login {
+  height: 80vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto Condensed;
+}
+
+.admin-login h2 {
+  padding: 50px;
+  font-weight: 700;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.admin-login .admin-login-child {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-login p,
+.admin-login input {
+  color: #ff5f00;
+}
+
+.admin-login input {
+  border: none;
+  border-bottom: 2px solid grey;
+  font-size: 18px;
+}
+
+.admin-login input:focus {
+  outline: none;
+}
+
+.admin-login button {
+  background-color: #ff5f00;
+  color: white;
+  border: none;
+  width: fit-content;
+  padding: 10px 90px;
+  font-family: Roboto Condensed;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.admin-login button:hover {
+  background-color: #ff6e19;
+}
+
+/* Admin : connected */
+
+.admin-connected {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.booking-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0px 10px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.admin-connected .booking-elem {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #ff5f00;
+  padding: 5px 5px;
+  gap: 5px;
+  font-family: Roboto Condensed;
+}
+
+.admin-connected .booking-elem .date,
+.admin-connected .booking-elem .booking-id,
+.admin-connected .booking-elem .price {
+  flex: 1;
+}
+
+.admin-connected .booking-elem .car-name,
+.admin-connected .booking-elem .booking-date,
+.admin-connected .booking-elem .client-name {
+  flex: 2;
+}
+
+.admin-connected .booking-elem .date {
+  color: #ff5f00;
+  font-weight: bold;
+}
+
+.admin-connected .booking-elem .booking-date,
+.admin-connected .booking-elem .client-name {
+  display: flex;
+  gap: 5px;
+}
+
+.admin-connected .booking-elem .booking-id,
+.admin-connected .booking-elem .booking-date {
+  font-style: italic;
+}
+
+.admin-connected .booking-elem .car-name,
+.admin-connected .booking-elem .client-name,
+.admin-connected .booking-elem .price {
+  font-weight: bold;
+}
+
+.admin-connected .booking-elem .client-name {
+  justify-content: center;
+}
+
+.admin-connected .booking-elem .price {
+  font-family: Rokkitt;
+  font-size: 18px;
+}
+
+.admin-connected .booking-elem i {
+  color: red;
+  font-weight: bold;
+}

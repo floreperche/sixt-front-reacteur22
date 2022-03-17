@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Header from "../components/Header";
-import { fr } from "date-fns/locale";
+import { fr } from "date-fns/locale/";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
@@ -42,7 +42,7 @@ const PersoDetails = ({
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [bookingId, setBookingId] = useState();
 
-  const years = range(1990, getYear(new Date()) + 1, 1);
+  const years = range(1900, getYear(new Date()) + 1, 1);
   const months = [
     "January",
     "February",
@@ -122,7 +122,7 @@ const PersoDetails = ({
       <div className="personal-infos">
         <h2>INFORMATIONS PERSONNELLES</h2>
         {errorMessage && (
-          <p>
+          <p className="error-message">
             {errorMessage}{" "}
             <i className="ico-close" onClick={() => setErrorMessage()} />
           </p>
@@ -169,7 +169,7 @@ const PersoDetails = ({
         </div>
         <div className="perso-input">
           <input
-            type="text"
+            type="email"
             placeholder="Adresse Mail*"
             onChange={(event) => {
               setEmail(event.target.value);
@@ -210,7 +210,7 @@ const PersoDetails = ({
         </div>
         <input
           type="text"
-          placeholder="Pays"
+          placeholder="Pays *"
           onChange={(event) => {
             setCountry(event.target.value);
           }}
@@ -367,7 +367,7 @@ const PersoDetails = ({
       {isConfirmed && (
         <div className="confirmation-modal-background">
           <div className="confirmation-modal-window">
-            <Link to="/">
+            <Link to="/" onClick={() => window.scrollTo(0, 0)}>
               <i
                 className="ico-close confirmation-close"
                 onClick={() => {

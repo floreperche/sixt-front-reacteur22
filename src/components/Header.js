@@ -1,9 +1,10 @@
 import "./Header.css";
 import logo from "../assets/img/sixt-logo.png";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 // Header for all pages
-const Header = ({ type, step }) => {
+const Header = ({ type, step, isConnected, setIsConnected }) => {
   return (
     <header className="wrapper">
       {/* Header left with logo */}
@@ -44,11 +45,26 @@ const Header = ({ type, step }) => {
       )}
 
       {/* Header right : Access to backoffice */}
-      <Link to="/admin">
-        <button>
-          <i className="ico-planet"></i> BACKOFFICE
-        </button>
-      </Link>
+      <div>
+        <Link to="/admin">
+          <button>
+            <i className="ico-planet"></i> BACKOFFICE
+          </button>
+        </Link>
+        {isConnected && (
+          <Link to="/" onClick={() => window.scrollTo(0, 0)}>
+            <button
+              className="log-out"
+              onClick={() => {
+                setIsConnected(false);
+                Cookies.remove("password");
+              }}
+            >
+              SE DECONNECTER
+            </button>
+          </Link>
+        )}
+      </div>
     </header>
   );
 };

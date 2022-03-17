@@ -142,7 +142,7 @@ const Configuration = ({
             <p>Taxes incluses</p>
           </div>
 
-          <Link to="/personaldetails">
+          <Link to="/personaldetails" onClick={() => window.scrollTo(0, 0)}>
             <button
               onClick={() => {
                 let newSelectedCar = selectedCar;
