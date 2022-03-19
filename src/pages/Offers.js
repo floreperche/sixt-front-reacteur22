@@ -46,7 +46,7 @@ const Offers = ({
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3003/rentaloffers${toAdd}`
+            `https://sixt-reacteur22.herokuapp.com/rentaloffers${toAdd}`
           );
           console.log(response.data);
           const newOfferList = [];
@@ -54,7 +54,7 @@ const Offers = ({
             try {
               // Getting details of each car
               const detailsResponse = await axios.get(
-                `http://localhost:3003/cardetails?id=${response.data[i].id}`
+                `https://sixt-reacteur22.herokuapp.com/cardetails?id=${response.data[i].id}`
               );
               newOfferList.push({
                 id: response.data[i].id,
@@ -121,12 +121,11 @@ const Offers = ({
     if (offerList) {
       if (filteredOfferList) {
         setResultsList(filteredOfferList);
-        setIsLoading(false);
       } else {
         setResultsList(offerList);
-        setIsLoading(false);
       }
     }
+    setIsLoading(false);
   }, [offerList, filteredOfferList]);
 
   return (

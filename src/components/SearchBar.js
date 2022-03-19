@@ -39,7 +39,7 @@ const SearchBar = ({
       if (searchText.length >= 3) {
         const fetchData = async () => {
           const response = await axios.get(
-            `http://localhost:3003/agencies?search=${searchText}`
+            `https://sixt-reacteur22.herokuapp.com/agencies?search=${searchText}`
           );
           setAgencyList(response.data);
         };

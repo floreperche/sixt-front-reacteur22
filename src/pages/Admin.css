@@ -74,6 +74,7 @@
 .admin-connected .booking-elem {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 2px solid #ff5f00;
   padding: 5px 5px;
   gap: 5px;
@@ -124,6 +125,23 @@
 }
 
 .admin-connected .booking-elem i {
-  color: red;
+  font-size: 20px;
   font-weight: bold;
+}
+
+.delete {
+  color: #ff5f00;
+  background-color: transparent;
+  margin-left: 20px;
+  margin-right: 10px;
+  padding: 6px;
+  border: 1px solid #ff5f00;
+  font-weight: bold;
+  font-family: Roboto Condensed;
+}
+
+.delete:hover {
+  background-color: #ff5f00;
+  color: white;
+  text-decoration: none;
 }

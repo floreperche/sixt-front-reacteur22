@@ -72,7 +72,7 @@ const PersoDetails = ({
         birthday
       ) {
         const response = await axios.post(
-          `http://localhost:3003/booking/create`,
+          `https://sixt-reacteur22.herokuapp.com/booking/create`,
           {
             civility: civility,
             society: society,
