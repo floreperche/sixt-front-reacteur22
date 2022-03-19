@@ -46,7 +46,7 @@ const CarFilter = ({ typeFilter, setTypeFilter, setIsLoading }) => {
               ) : (
                 <i className="ico-checkbox" />
               )}
-              <p>SEDAN</p>
+              <p>BERLINE</p>
             </div>
             <i className=" ico-limousine" />
           </button>

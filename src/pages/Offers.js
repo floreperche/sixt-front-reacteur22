@@ -46,7 +46,7 @@ const Offers = ({
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `https://sixt-reacteur22.herokuapp.com/rentaloffers${toAdd}`
+            `https://flore-perche-sixt.herokuapp.com/rentaloffers${toAdd}`
           );
           console.log(response.data);
           const newOfferList = [];
@@ -54,7 +54,7 @@ const Offers = ({
             try {
               // Getting details of each car
               const detailsResponse = await axios.get(
-                `https://sixt-reacteur22.herokuapp.com/cardetails?id=${response.data[i].id}`
+                `https://flore-perche-sixt.herokuapp.com/cardetails?id=${response.data[i].id}`
               );
               newOfferList.push({
                 id: response.data[i].id,

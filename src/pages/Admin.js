@@ -21,7 +21,7 @@ const Admin = () => {
     if (passwordInput) {
       try {
         const response = await axios.get(
-          `https://sixt-reacteur22.herokuapp.com/backoffice?input=${passwordInput}`
+          `https://flore-perche-sixt.herokuapp.com/backoffice?input=${passwordInput}`
         );
         if (response.data.message.includes("incorrect")) {
           setErrorMessage("Le mot de passe saisi est incorrect");
@@ -53,7 +53,7 @@ const Admin = () => {
         try {
           const newBookingList = [];
           const response = await axios.get(
-            "https://sixt-reacteur22.herokuapp.com/booking/read"
+            "https://flore-perche-sixt.herokuapp.com/booking/read"
           );
           for (let i = 0; i < response.data.length; i++) {
             newBookingList.push({
@@ -87,7 +87,7 @@ const Admin = () => {
     setIsDeleted(false);
     if (id) {
       const response = await axios.get(
-        `https://sixt-reacteur22.herokuapp.com/booking/delete?id=${id}`
+        `https://flore-perche-sixt.herokuapp.com/booking/delete?id=${id}`
       );
       if (response.data) {
         setIsDeleted(true);
