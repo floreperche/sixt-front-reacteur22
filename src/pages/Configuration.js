@@ -20,33 +20,53 @@ const Configuration = ({
 }) => {
   const [toReload, setToReload] = useState(false);
 
-  const priceCalcul = () => {
+  // Function to calcule prices (total price, total price and price by day without fees)
+  const priceCalcul = (result) => {
     let totalPriceCalcul = numberOfDays * selectedCar.price;
-    for (let i = 0; i < selectedCar.carDetails.additionalCharges.length; i++) {
-      if (selectedCar.carDetails.additionalCharges[i].amount === 1) {
-        if (
-          selectedCar.carDetails.additionalCharges[i].price.unit === "jour" ||
-          selectedCar.carDetails.additionalCharges[i].price.unit ===
-            "jour/unité"
-        ) {
-          totalPriceCalcul +=
-            selectedCar.carDetails.additionalCharges[i].price.amount *
-            numberOfDays;
-        } else {
-          totalPriceCalcul +=
-            selectedCar.carDetails.additionalCharges[i].price.amount;
+    // Total price
+    if (result === "total") {
+      for (
+        let i = 0;
+        i < selectedCar.carDetails.additionalCharges.length;
+        i++
+      ) {
+        if (selectedCar.carDetails.additionalCharges[i].amount === 1) {
+          if (
+            selectedCar.carDetails.additionalCharges[i].price.unit === "jour" ||
+            selectedCar.carDetails.additionalCharges[i].price.unit ===
+              "jour/unité"
+          ) {
+            totalPriceCalcul +=
+              selectedCar.carDetails.additionalCharges[i].price.amount *
+              numberOfDays;
+          } else {
+            totalPriceCalcul +=
+              selectedCar.carDetails.additionalCharges[i].price.amount;
+          }
         }
       }
+      return totalPriceCalcul.toFixed(2);
+    } else {
+      // Total price and price by day without fees
+      let fees = 0;
+      for (let j = 0; j < selectedCar.carDetails.extraFees.length; j++) {
+        fees += selectedCar.carDetails.extraFees[j].price.amount;
+      }
+      if (result === "totalWithoutFees") {
+        return (totalPriceCalcul - fees).toFixed(2);
+      } else if (result === "byDayWithoutFees") {
+        return ((totalPriceCalcul - fees) / numberOfDays).toFixed(2);
+      } else {
+        return;
+      }
     }
-    for (let j = 0; j < selectedCar.carDetails.extraFees.length; j++) {
-      totalPriceCalcul += selectedCar.carDetails.extraFees[j].price.amount;
-    }
-    return totalPriceCalcul.toFixed(2);
   };
 
   return (
     <div className="config wrapper">
+      {/* Header */}
       <Header type="steps" step="two" />
+      {/* Search bar */}
       <SearchBar
         type="without-button"
         selectedAgency={selectedAgency}
@@ -58,10 +78,12 @@ const Configuration = ({
         numberOfDays={numberOfDays}
         setNumberOfDays={setNumberOfDays}
       />
+      {/* Intro with image */}
       <div className="intro-car">
         <img src={selectedCar.carDetails.splashImages[0]} alt="" />
         <h3>{selectedCar.name} </h3>
       </div>
+      {/* Subtitle with car spec */}
       <div className="car-subtitles">
         <p>{selectedCar.longSubline}</p>
         <div>
@@ -90,24 +112,28 @@ const Configuration = ({
           </div>
         </div>
       </div>
+      {/* Car details with options to select, price and action button */}
       <div className="car-details">
         <div className="details-left">
           <h2>CHOISSISSEZ VOTRE PROTECTION ET VOS OPTIONS</h2>
           <div>
+            {/* (Dynamic) summary of options */}
             <h3>VOTRE OFFRE INCLUT</h3>
             <div className="included-list">
-              {selectedCar.carDetails.includedCharges.map((includedCharges) => {
-                return (
-                  <p>
-                    <i className="ico-bullet-sm" /> {includedCharges.title}
-                  </p>
-                );
-              })}
-              {selectedCar.carDetails.additionalCharges.map((elem) => {
+              {selectedCar.carDetails.includedCharges.map(
+                (includedCharges, index) => {
+                  return (
+                    <p key={index}>
+                      <i className="ico-bullet-sm" /> {includedCharges.title}
+                    </p>
+                  );
+                }
+              )}
+              {selectedCar.carDetails.additionalCharges.map((elem, index) => {
                 // console.log("elem >", elem);
                 return (
                   elem.amount === 1 && (
-                    <p>
+                    <p key={index}>
                       <i className="ico-bullet-sm" /> {elem.title}
                     </p>
                   )
@@ -116,6 +142,7 @@ const Configuration = ({
             </div>
           </div>
 
+          {/* Option selection */}
           <div>
             <h3>CHOISISSEZ VOS OPTIONS</h3>
             <OptionsCarousel
@@ -126,14 +153,17 @@ const Configuration = ({
             />
           </div>
         </div>
+
+        {/* Price and button */}
         <div className="details-right">
           <div>
             <p className="black">TOTAL</p>
             <p className="price-value">
-              € <span>{priceCalcul()}</span>
+              € <span>{priceCalcul("total")}</span>
             </p>
           </div>
           <div>
+            {/* Price details modal */}
             <PriceDetailsModal
               numberOfDays={numberOfDays}
               selectedCar={selectedCar}
@@ -142,13 +172,17 @@ const Configuration = ({
             <p>Taxes incluses</p>
           </div>
 
+          {/* Link to personal details Page with memorization in the selectedCar value of user choices to avoid mapping options in the next screens : creation of TotalPrice, locationPrice, locationPriceByDay and selectedAdditionalCharges */}
           <Link to="/personaldetails" onClick={() => window.scrollTo(0, 0)}>
             <button
               onClick={() => {
                 let newSelectedCar = selectedCar;
-                newSelectedCar.totalPrice = Number(priceCalcul());
+                newSelectedCar.totalPrice = Number(priceCalcul("total"));
                 newSelectedCar.locationPrice = Number(
-                  (numberOfDays * selectedCar.price).toFixed(2)
+                  priceCalcul("totalWithoutFees")
+                );
+                newSelectedCar.locationPriceByDay = Number(
+                  priceCalcul("byDayWithoutFees")
                 );
                 const selectedOptions = [];
                 const options = newSelectedCar.carDetails.additionalCharges;

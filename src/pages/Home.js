@@ -2,7 +2,7 @@ import "./Home.css";
 import map from "../assets/img/sixt-in-the-world.png";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 // Imports for the carousel
 import { Carousel } from "react-responsive-carousel";
 import carousel1 from "../assets/img/carousel/carousel-1.jpeg";
@@ -23,6 +23,7 @@ const Home = ({
 }) => {
   return (
     <div className="wrapper">
+      {/* Header */}
       <Header type="home" />
       {/* Subtitle with transportation types */}
       <div className="transportation-type">

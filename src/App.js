@@ -5,6 +5,7 @@ import Configuration from "./pages/Configuration";
 import PersoDetails from "./pages/PersoDetails";
 import Admin from "./pages/Admin";
 import Footer from "./components/Footer";
+import Error from "./pages/Error";
 
 // Other imports
 import { useState } from "react";
@@ -14,6 +15,7 @@ import "./assets/fonts/stylesheet.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  // UseStates common to many routes
   const [selectedAgency, setSelectedAgency] = useState();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -23,6 +25,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Home Route */}
         <Route
           path="/"
           element={
@@ -38,6 +41,7 @@ function App() {
             />
           }
         ></Route>
+        {/* Offers Route */}
         <Route
           path="/offerlist"
           element={
@@ -54,6 +58,7 @@ function App() {
             />
           }
         ></Route>
+        {/* Configuration Route */}
         <Route
           path="/offerconfig"
           element={
@@ -71,6 +76,7 @@ function App() {
             />
           }
         ></Route>
+        {/* PersoDetails Route */}
         <Route
           path="/personaldetails"
           element={
@@ -88,7 +94,10 @@ function App() {
             />
           }
         ></Route>
+        {/* Admin Route */}
         <Route path="/admin" element={<Admin />}></Route>
+        {/* All Routes > redirecting Home */}
+        <Route path="*" element={<Error />}></Route>
       </Routes>
       <Footer />
     </Router>

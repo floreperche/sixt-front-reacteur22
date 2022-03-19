@@ -25,21 +25,19 @@ const PriceDetailsModal = ({ numberOfDays, selectedCar, priceCalcul }) => {
               <h3>PERIODE DE LOCATION</h3>
               <div>
                 <p>
-                  Durée de location ({numberOfDays} jour(s) x{" "}
-                  {selectedCar.price})
+                  Durée de location ({numberOfDays} jour(s) x €{" "}
+                  {priceCalcul("byDayWithoutFees")})
                 </p>
-                <p className="price">
-                  € {(numberOfDays * selectedCar.price).toFixed(2)}
-                </p>
+                <p className="price">€ {priceCalcul("totalWithoutFees")}</p>
               </div>
             </div>
             <div className="price-subdivision">
               <h3>PROTECTIONS ET OPTIONS</h3>
               {selectedCar.carDetails.additionalCharges.map(
-                (protecAndOptions) => {
+                (protecAndOptions, index) => {
                   return (
                     protecAndOptions.amount === 1 && (
-                      <div>
+                      <div key={index}>
                         <p>{protecAndOptions.title}</p>
                         <p className="price">
                           €{" "}
@@ -73,7 +71,7 @@ const PriceDetailsModal = ({ numberOfDays, selectedCar, priceCalcul }) => {
             <div className="car-modal-total">
               <h3>TOTAL</h3>
               <p>
-                € <span>{priceCalcul()}</span>
+                € <span>{priceCalcul("total")}</span>
               </p>
             </div>
             <p>Taxes incluses</p>

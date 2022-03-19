@@ -1,8 +1,8 @@
 import Header from "../components/Header";
 import Loading from "../components/Loading";
+import BookingModal from "../components/BookingModal";
 import { useState, useEffect } from "react";
 import "./Admin.css";
-// import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { format } from "date-fns";
@@ -16,6 +16,7 @@ const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleted, setIsDeleted] = useState(false);
 
+  // Query to check if the password is correct
   const checkPassword = async () => {
     setErrorMessage("");
     if (passwordInput) {
@@ -37,6 +38,7 @@ const Admin = () => {
     }
   };
 
+  // Keeping the admin session open is there is a cookie
   useEffect(() => {
     const cookieCheck = Cookies.get("password");
     if (cookieCheck) {
@@ -46,6 +48,7 @@ const Admin = () => {
     }
   }, []);
 
+  // Query to get the list of booking in the database
   useEffect(() => {
     setIsLoading(true);
     if (isConnected) {
@@ -73,6 +76,7 @@ const Admin = () => {
     }
   }, [isConnected, isDeleted]);
 
+  // Function to open/close the modal with booking details
   const fetchModal = (goal, index) => {
     const newBookingList = [...bookingList];
     if (goal === "open") {
@@ -83,6 +87,7 @@ const Admin = () => {
     setBookingList(newBookingList);
   };
 
+  // Function to delete a booking
   const toDelete = async (id) => {
     setIsDeleted(false);
     if (id) {
@@ -100,7 +105,9 @@ const Admin = () => {
   };
 
   return isConnected ? (
+    // When connected : booking list
     <div className="wrapper">
+      {/* Header */}
       <Header
         type="home"
         isConnected={isConnected}
@@ -109,8 +116,16 @@ const Admin = () => {
       {isLoading ? (
         <Loading />
       ) : (
+        // Booking tab
         <div className="admin-connected">
-          <h2>Vous avez {bookingList.length} réservation(s) !</h2>
+          {bookingList.length > 0 ? (
+            <h2>
+              Vous avez <span>{bookingList.length}</span> réservation(s) !
+            </h2>
+          ) : (
+            <h2>Vous n'avez pas de réservation</h2>
+          )}
+
           <div className="booking-tab">
             {bookingList.map((elem, index) => {
               return (
@@ -183,100 +198,9 @@ const Admin = () => {
                       SUPPRIMER
                     </button>
                   </div>
+
                   {/* Modal with details */}
-                  {elem.booking_modal && (
-                    <div className="price-modal-background">
-                      <div className=" price-modal-window">
-                        <i
-                          className="ico-close"
-                          onClick={() => {
-                            fetchModal("close", index);
-                          }}
-                        />
-                        <div className="price-subdivision">
-                          <h3>{elem.booking_info.car_short_name}</h3>
-                          <p>{elem.booking_info.car_long_name}</p>
-                          <p>{elem.booking_info.car_agency_name}</p>
-                          <p>
-                            {format(
-                              new Date(elem.booking_info.booking_start),
-                              "dd LLL HH:mm",
-                              { locale: fr }
-                            )}{" "}
-                            -{" "}
-                            {format(
-                              new Date(elem.booking_info.booking_return),
-                              "dd LLL HH:mm",
-                              { locale: fr }
-                            )}
-                          </p>
-                          <img
-                            src={elem.booking_info.car_picture}
-                            alt="car booked"
-                          />
-                        </div>
-                        <div className="price-subdivision">
-                          <h3>PERIODE DE LOCATION</h3>
-                          <div>
-                            <p>
-                              Durée de location (
-                              {elem.booking_info.booking_duration} jour(s) x{" "}
-                              {
-                                elem.booking_info.car_price_details
-                                  .car_day_price
-                              }
-                              )
-                            </p>
-                            <p className="price">
-                              €{" "}
-                              {elem.booking_info.car_price_details.car_location_price.toFixed(
-                                2
-                              )}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="price-subdivision">
-                          <h3>PROTECTIONS ET OPTIONS</h3>
-                          {elem.booking_info.car_price_details.car_selected_additional_charges.map(
-                            (protecAndOptions) => {
-                              return (
-                                <div>
-                                  <p>{protecAndOptions.title}</p>
-                                  <p className="price">
-                                    € {protecAndOptions.totalPrice}
-                                  </p>
-                                </div>
-                              );
-                            }
-                          )}
-                        </div>
-
-                        <div className="price-subdivision">
-                          <h3>FRAIS</h3>
-                          {elem.booking_info.car_price_details.car_extra_fees.map(
-                            (extraFees) => {
-                              return (
-                                <div>
-                                  <p>{extraFees.title}</p>
-                                  <p className="price">
-                                    € {extraFees.price.amount.toFixed(2)}
-                                  </p>
-                                </div>
-                              );
-                            }
-                          )}
-                        </div>
-
-                        <div className="car-modal-total">
-                          <h3>TOTAL</h3>
-                          <p>
-                            €{" "}
-                            <span>{elem.booking_info.booking_total_price}</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  <BookingModal elem={elem} fetchModal={fetchModal} />
                 </>
               );
             })}
@@ -285,6 +209,7 @@ const Admin = () => {
       )}
     </div>
   ) : (
+    // When disconnected : connection form
     <div className="wrapper">
       <Header type="home" />
       <div className="admin-login">

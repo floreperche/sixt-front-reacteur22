@@ -1,5 +1,4 @@
 /* CSS for all pages */
-
 body {
   font-family: Roboto;
 }
@@ -7,4 +6,27 @@ body {
 .wrapper {
   max-width: 1600px;
   margin: 0 auto;
+}
+
+/* Error page CSS */
+.error-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.error-button button {
+  background-color: #ff5f00;
+  color: white;
+  border: none;
+  width: fit-content;
+  padding: 10px 90px;
+  font-family: Roboto Condensed;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.error-button button:hover {
+  background-color: #ff6e19;
 }

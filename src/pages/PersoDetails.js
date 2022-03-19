@@ -3,13 +3,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Header from "../components/Header";
+import PersoInfosForm from "../components/PersoInfosForm";
 import { fr } from "date-fns/locale/";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
-import { getMonth, getYear } from "date-fns";
-import range from "lodash/range";
-// import { formatDistanceStrict } from "date-fns";
 registerLocale("fr", fr);
 
 const PersoDetails = ({
@@ -24,9 +21,6 @@ const PersoDetails = ({
   selectedCar,
   setSelectedCar,
 }) => {
-  // console.log(selectedCar);
-  // console.log(selectedAgency);
-
   const [civility, setCivility] = useState("");
   const [society, setSociety] = useState();
   const [firstName, setFirstName] = useState("");
@@ -42,22 +36,7 @@ const PersoDetails = ({
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [bookingId, setBookingId] = useState();
 
-  const years = range(1900, getYear(new Date()) + 1, 1);
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
+  // Function when the form is submited to save the booking into the database (if a check of the mandatory inputs)
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
@@ -97,13 +76,13 @@ const PersoDetails = ({
             driver_min_age: selectedCar.driverMinAge,
             day_price: selectedCar.price,
             location_price: selectedCar.locationPrice,
+            location_price_by_day: selectedCar.locationPriceByDay,
             included_charges: selectedCar.carDetails.includedCharges,
             extra_fees: selectedCar.carDetails.extraFees,
             additional_charges: selectedCar.selectedAdditionalCharges,
             total_price: selectedCar.totalPrice,
           }
         );
-        console.log(response.data);
         setBookingId(response.data.bookingId);
         setIsConfirmed(true);
       } else {
@@ -119,185 +98,43 @@ const PersoDetails = ({
     <div className="perso-details wrapper">
       <Header type="steps" step="three" />
 
-      <div className="personal-infos">
-        <h2>INFORMATIONS PERSONNELLES</h2>
-        {errorMessage && (
-          <p className="error-message">
-            {errorMessage}{" "}
-            <i className="ico-close" onClick={() => setErrorMessage()} />
-          </p>
-        )}
-        <div>
-          <p onClick={() => setCivility("M.")}>
-            <i
-              className={civility === "M." ? "ico-radio-selected" : "ico-radio"}
-            />{" "}
-            M. **
-          </p>
+      {/* Personal informations form */}
+      <PersoInfosForm
+        errorMessage={errorMessage}
+        setErrorMessage={setErrorMessage}
+        setCivility={setCivility}
+        civility={civility}
+        setSociety={setSociety}
+        setFirstName={setFirstName}
+        setLastName={setLastName}
+        setEmail={setEmail}
+        setPhoneNumber={setPhoneNumber}
+        setStreet={setStreet}
+        setPostalCode={setPostalCode}
+        setCity={setCity}
+        setCountry={setCountry}
+        birthday={birthday}
+        setBirthday={setBirthday}
+      />
 
-          <p onClick={() => setCivility("Mme")}>
-            <i
-              className={
-                civility === "Mme" ? "ico-radio-selected" : "ico-radio"
-              }
-            />{" "}
-            Mme **
-          </p>
-        </div>
-        <input
-          type="text"
-          placeholder="Société"
-          onChange={(event) => {
-            setSociety(event.target.value);
-          }}
-        />
-        <div className="perso-input">
-          <input
-            type="text"
-            placeholder="Prénom *"
-            onChange={(event) => {
-              setFirstName(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Nom de famille *"
-            onChange={(event) => {
-              setLastName(event.target.value);
-            }}
-          />
-        </div>
-        <div className="perso-input">
-          <input
-            type="email"
-            placeholder="Adresse Mail*"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Numéro de téléphone *"
-            onChange={(event) => {
-              setPhoneNumber(event.target.value);
-            }}
-          />
-        </div>
-        <div className="perso-input">
-          <input
-            type="text"
-            placeholder="Rue *"
-            onChange={(event) => {
-              setStreet(event.target.value);
-            }}
-          />
-          <div>
-            <input
-              type="text"
-              placeholder="Code postal *"
-              onChange={(event) => {
-                setPostalCode(event.target.value);
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Ville *"
-              onChange={(event) => {
-                setCity(event.target.value);
-              }}
-            />
-          </div>
-        </div>
-        <input
-          type="text"
-          placeholder="Pays *"
-          onChange={(event) => {
-            setCountry(event.target.value);
-          }}
-        />
-        <div className="birthday">
-          <p>DATE DE NAISSANCE</p>
-          <DatePicker
-            className="birthday"
-            selected={birthday}
-            onChange={(event) => setBirthday(event)}
-            locale="fr"
-            dateFormat="d MMM yyyy"
-            maxDate={Date.now()}
-            placeholderText="Date de naissance *"
-            renderCustomHeader={({
-              date,
-              changeYear,
-              changeMonth,
-              decreaseMonth,
-              increaseMonth,
-              prevMonthButtonDisabled,
-              nextMonthButtonDisabled,
-            }) => (
-              <div
-                style={{
-                  margin: 10,
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <button
-                  onClick={decreaseMonth}
-                  disabled={prevMonthButtonDisabled}
-                >
-                  {"<"}
-                </button>
-                <select
-                  value={getYear(date)}
-                  onChange={({ target: { value } }) => changeYear(value)}
-                >
-                  {years.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-
-                <select
-                  value={months[getMonth(date)]}
-                  onChange={({ target: { value } }) =>
-                    changeMonth(months.indexOf(value))
-                  }
-                >
-                  {months.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-
-                <button
-                  onClick={increaseMonth}
-                  disabled={nextMonthButtonDisabled}
-                >
-                  {">"}
-                </button>
-              </div>
-            )}
-          />
-        </div>
-      </div>
-
+      {/* Booking recap */}
       <div className="booking-recap">
         <h2>VERIFIER ET RESERVER</h2>
         <div className="price-subdivision">
           <h3>VOTRE OFFRE INCLUT</h3>
           <div className="included-list-recap">
-            {selectedCar.carDetails.includedCharges.map((includedCharges) => {
+            {selectedCar.carDetails.includedCharges.map(
+              (includedCharges, index) => {
+                return (
+                  <p key={index}>
+                    <i className="ico-bullet-sm" /> {includedCharges.title}
+                  </p>
+                );
+              }
+            )}
+            {selectedCar.selectedAdditionalCharges.map((elem, index) => {
               return (
-                <p>
-                  <i className="ico-bullet-sm" /> {includedCharges.title}
-                </p>
-              );
-            })}
-            {selectedCar.selectedAdditionalCharges.map((elem) => {
-              return (
-                <p>
+                <p key={index}>
                   <i className="ico-bullet-sm" /> {elem.title}
                 </p>
               );
@@ -312,30 +149,30 @@ const PersoDetails = ({
           <h3>PERIODE DE LOCATION</h3>
           <div>
             <p>
-              Durée de location ({numberOfDays} jour(s) x {selectedCar.price})
+              Durée de location ({numberOfDays} jour(s) x €{" "}
+              {selectedCar.locationPriceByDay})
             </p>
-            <p className="price">
-              € {(numberOfDays * selectedCar.price).toFixed(2)}
-            </p>
+            <p className="price">€ {selectedCar.locationPrice}</p>
           </div>
         </div>
         <div className="price-subdivision">
           <h3>PROTECTIONS ET OPTIONS</h3>
-          {selectedCar.selectedAdditionalCharges.map((protecAndOptions) => {
-            // console.log(protecAndOptions);
-            return (
-              <div>
-                <p>{protecAndOptions.title}</p>
-                <p className="price"> € {protecAndOptions.totalPrice}</p>
-              </div>
-            );
-          })}
+          {selectedCar.selectedAdditionalCharges.map(
+            (protecAndOptions, index) => {
+              return (
+                <div key={index}>
+                  <p>{protecAndOptions.title}</p>
+                  <p className="price"> € {protecAndOptions.totalPrice}</p>
+                </div>
+              );
+            }
+          )}
         </div>
         <div className="price-subdivision">
           <h3>FRAIS</h3>
-          {selectedCar.carDetails.extraFees.map((extraFees) => {
+          {selectedCar.carDetails.extraFees.map((extraFees, index) => {
             return (
-              <div>
+              <div key={index}>
                 <p>{extraFees.title}</p>
                 <p className="price">€ {extraFees.price.amount.toFixed(2)}</p>
               </div>
@@ -354,6 +191,7 @@ const PersoDetails = ({
         </div>
       </div>
 
+      {/* Confirmation with button action */}
       <div className="go-booking">
         <p>
           En cliquant sur le bouton, je confirme que j'ai lu et accepté les{" "}
@@ -364,6 +202,8 @@ const PersoDetails = ({
           RESERVER
         </button>
       </div>
+
+      {/* Modal with the confirmation message and the booking ID */}
       {isConfirmed && (
         <div className="confirmation-modal-background">
           <div className="confirmation-modal-window">

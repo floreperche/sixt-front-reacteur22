@@ -1,14 +1,11 @@
 import "./Offers.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import Loading from "../components/Loading";
+import CarModal from "../components/CarModal";
 import CarFilter from "../components/CarFilter";
-import { Carousel } from "react-responsive-carousel";
-// import { set } from "date-fns/esm";
-// import { fr } from "date-fns";
 
 const Offers = ({
   selectedAgency,
@@ -24,7 +21,6 @@ const Offers = ({
   const [offerList, setOfferList] = useState([]);
   const [filteredOfferList, setFilteredOfferList] = useState([]);
   const [resultsList, setResultsList] = useState([]);
-
   const [typeFilter, setTypeFilter] = useState([
     { name: "ico-convertible", state: false },
     { name: "ico-limousine", state: false },
@@ -35,7 +31,7 @@ const Offers = ({
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Get car list for an agency, start and return date (with car details > mandatory to calculate price with fees)
+  // Getting car list for an agency, start and return date (with car details)
   useEffect(() => {
     setIsLoading(true);
     setErrorMessage();
@@ -45,17 +41,18 @@ const Offers = ({
       }&returnDate=${endDate.toISOString().split(".")[0]}`;
       const fetchData = async () => {
         try {
+          // Query for the list
           const response = await axios.get(
             `https://flore-perche-sixt.herokuapp.com/rentaloffers${toAdd}`
           );
-          console.log(response.data);
           const newOfferList = [];
           for (let i = 0; i < response.data.length; i++) {
             try {
-              // Getting details of each car
+              // Query to get details of each car
               const detailsResponse = await axios.get(
                 `https://flore-perche-sixt.herokuapp.com/cardetails?id=${response.data[i].id}`
               );
+              // Pushing the needed informations
               newOfferList.push({
                 id: response.data[i].id,
                 name: response.data[i].headlines.description,
@@ -89,7 +86,7 @@ const Offers = ({
     }
   }, [selectedAgency, startDate, endDate]);
 
-  // Filters > create le list with only the filtered car
+  // Filters > if there are filters : creating a filtered list with only the filtered cars
   useEffect(() => {
     let newfilteredOfferList = [];
     if (
@@ -130,7 +127,9 @@ const Offers = ({
 
   return (
     <div className="wrapper">
+      {/* Header */}
       <Header type="steps" step="one" />
+      {/* SearchBar */}
       <SearchBar
         type="without-button"
         selectedAgency={selectedAgency}
@@ -143,6 +142,7 @@ const Offers = ({
         setNumberOfDays={setNumberOfDays}
       />
 
+      {/* Bar with the filter button and the result number */}
       {errorMessage ? (
         <div className="no-result">{errorMessage}</div>
       ) : (
@@ -160,31 +160,21 @@ const Offers = ({
             )}
           </div>
 
+          {/* List of cars according to the search and filters */}
           {isLoading ? (
             <Loading />
           ) : (
             <div className="car-list">
               {resultsList.map((elem, index) => {
-                let extraFeesAmount = 0;
                 let totalPrice = 0;
-                if (elem.carDetails.extraFees) {
-                  const extraFeesDetails = elem.carDetails.extraFees;
-                  for (let k = 0; k < extraFeesDetails.length; k++) {
-                    extraFeesAmount += extraFeesDetails[k].price.amount;
-                  }
-                  totalPrice = (
-                    elem.price * numberOfDays +
-                    extraFeesAmount
-                  ).toFixed(2);
-                } else {
-                  totalPrice = (elem.price * numberOfDays).toFixed(2);
-                }
+                totalPrice = (elem.price * numberOfDays).toFixed(2);
                 const dayPriceWithExtraFees = (
                   totalPrice / numberOfDays
                 ).toFixed(2);
 
                 return (
                   <>
+                    {/* Car card on the list of results */}
                     <div
                       className="car-card"
                       key={elem.id}
@@ -205,95 +195,16 @@ const Offers = ({
                       </p>
                       <p className="basket total">€ {totalPrice} total</p>
                     </div>
+                    {/* Car modal */}
                     {elem.carModal && (
-                      <div className="car-modal-background">
-                        <div className=" wrapper car-modal">
-                          <div className="carousel-car-wrapper">
-                            <Carousel
-                              showThumbs={false}
-                              showStatus={false}
-                              infiniteLoop="true"
-                              autoPlay="true"
-                            >
-                              {elem.carDetails.splashImages.map((carImg) => {
-                                return (
-                                  <div key={elem.id}>
-                                    <img src={carImg} alt="car details" />
-                                  </div>
-                                );
-                              })}
-                            </Carousel>
-                            <div className="carousel-car-infos">
-                              <h2>{elem.name}</h2>
-                              <div className="carousel-car-details">
-                                <div>
-                                  <i className="ico-maxPassengers" />{" "}
-                                  {elem.seats} sièges
-                                </div>
-                                <div>
-                                  <i className="ico-doors" /> {elem.doors}{" "}
-                                  portes
-                                </div>
-                                <div>
-                                  <i className="ico-automatic" />{" "}
-                                  {elem.automatic ? (
-                                    <>Automatique</>
-                                  ) : (
-                                    <>Manuelle</>
-                                  )}
-                                </div>
-                                <div>
-                                  <i className="ico-baggage" /> {elem.baggage}{" "}
-                                  bagages
-                                </div>
-                                {elem.airCondition && (
-                                  <div>
-                                    <i className="ico-airCondition" />{" "}
-                                    Climatisation
-                                  </div>
-                                )}
-
-                                <div>
-                                  <i className="ico-driverRequirements" />{" "}
-                                  {elem.driverMinAge} ans
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="car-modal-right">
-                            <i
-                              className="ico-close"
-                              onClick={() => {
-                                const newResultsList = [...resultsList];
-                                newResultsList[index].carModal = false;
-                                setOfferList(newResultsList);
-                              }}
-                            />
-                            <div className="car-modal-bottom">
-                              <div className="price-div">
-                                <p>TOTAL</p>
-                                <p className="price">
-                                  € <span>{totalPrice}</span>{" "}
-                                </p>
-                              </div>
-                              <p>Taxes incluses</p>
-                              <Link
-                                to="/offerconfig"
-                                onClick={() => window.scrollTo(0, 0)}
-                              >
-                                <button
-                                  onClick={() => {
-                                    setSelectedCar(elem);
-                                  }}
-                                >
-                                  {" "}
-                                  SELECTIONNER
-                                </button>
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <CarModal
+                        elem={elem}
+                        resultsList={resultsList}
+                        index={index}
+                        setOfferList={setOfferList}
+                        totalPrice={totalPrice}
+                        setSelectedCar={setSelectedCar}
+                      />
                     )}
                   </>
                 );
