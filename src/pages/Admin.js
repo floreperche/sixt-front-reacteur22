@@ -200,7 +200,11 @@ const Admin = () => {
                   </div>
 
                   {/* Modal with details */}
-                  <BookingModal elem={elem} fetchModal={fetchModal} />
+                  <BookingModal
+                    elem={elem}
+                    fetchModal={fetchModal}
+                    index={index}
+                  />
                 </>
               );
             })}

@@ -1,3 +1,4 @@
+/* Bar with the filter button and the result number */
 .infos-and-filter {
   background-color: #ff5f00;
   display: flex;
@@ -19,6 +20,7 @@
   color: white;
 }
 
+/* Car filter (JS inside a component) */
 .car-filter {
   position: relative;
 }
@@ -124,6 +126,7 @@
   font-size: 28px;
 }
 
+/* Car modal (JS inside a component) */
 .car-modal-background {
   height: 100vh;
   width: 100vw;
@@ -148,10 +151,6 @@
   /* margin-right: 50px; */
   font-family: Roboto Condensed;
 }
-
-/* .car-modal img {
-  width: 20%;
-} */
 
 .carousel-car-wrapper {
   /* width: 70%; */

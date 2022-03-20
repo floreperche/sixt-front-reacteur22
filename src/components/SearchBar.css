@@ -1,3 +1,45 @@
+/* Agency search */
+.search-bar .unselected,
+.search-bar .unselected:hover {
+  background-color: #ff5e0023;
+  color: rgba(255, 255, 255, 0.356);
+}
+
+/* Agency list */
+.agency-box {
+  position: absolute;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  left: 0;
+  margin-top: 8px;
+  z-index: 50;
+  color: black;
+  width: 600px;
+}
+
+.search-bar .search-text .agency-box {
+  /* border-bottom: 2px solid white;
+    padding: 5px;
+    display: flex; */
+  align-items: start;
+}
+
+.search-bar .agency-box p {
+  color: black;
+  font-size: 16px;
+  padding: 10px 0px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-bar .agency-box p i {
+  color: #ff5f00;
+}
+
+/* Start/end date CSS */
 .start-date input,
 .end-date input {
   background-color: transparent;
@@ -88,49 +130,7 @@
   /* padding: 20px; */
 }
 
-/* .agency-search {
-
-} */
-
-.agency-box {
-  position: absolute;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  left: 0;
-  margin-top: 8px;
-  z-index: 50;
-  color: black;
-  width: 600px;
-}
-
-.search-bar .search-text .agency-box {
-  /* border-bottom: 2px solid white;
-    padding: 5px;
-    display: flex; */
-  align-items: start;
-}
-
-.search-bar .agency-box p {
-  color: black;
-  font-size: 16px;
-  padding: 10px 0px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.search-bar .agency-box p i {
-  color: #ff5f00;
-}
-
-.search-bar .unselected,
-.search-bar .unselected:hover {
-  background-color: #ff5e0023;
-  color: rgba(255, 255, 255, 0.356);
-}
-
+/* Error message */
 .error-message {
   background-color: #191919;
   display: flex;

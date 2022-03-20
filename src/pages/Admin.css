@@ -1,3 +1,5 @@
+/* Admin : not connected */
+
 .admin-login {
   height: 80vh;
   box-sizing: border-box;
@@ -80,6 +82,7 @@
   padding: 0px 10px;
   width: 100%;
   margin-bottom: 50px;
+  min-height: 60vh;
 }
 
 .admin-connected .booking-elem {
@@ -158,4 +161,17 @@
   background-color: #ff5f00;
   color: white;
   text-decoration: none;
+}
+
+/* Booking modal */
+
+.intro-booking-modal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.intro-booking-modal img {
+  width: 150px;
 }

@@ -1,3 +1,5 @@
+// Component included in the Config Page : managing the option tab (not really a carousel actually...)
+
 import { useState } from "react";
 
 const OptionsCarousel = ({
@@ -9,11 +11,13 @@ const OptionsCarousel = ({
   const [extendOptions, setExtendOptions] = useState(false);
 
   return (
+    // List of all options
     <div className="options-carousel">
       {selectedCar.carDetails.additionalCharges.map((addCharge, index) => {
         return (
           ((extendOptions === false && index < 5) || extendOptions) && (
             <div
+              // Managing the onClik : adding/removing the option + managing the Sixt Connect options
               onClick={() => {
                 if (addCharge.price.amount > 0) {
                   let newSelectedCar = selectedCar;
@@ -49,7 +53,7 @@ const OptionsCarousel = ({
                   : "options-card unselected"
               }
             >
-              {" "}
+              {/* Content of the option card */}{" "}
               <i className={addCharge.icon} />
               <div>
                 <h3>{addCharge.title} </h3>
@@ -70,6 +74,7 @@ const OptionsCarousel = ({
           )
         );
       })}
+      {/* Button to extend/reduce options */}
       {extendOptions === false ? (
         <div
           className="options-card see-more"

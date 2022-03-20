@@ -1,3 +1,5 @@
+// Component included in the connected version of Admin page with booking details
+
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
@@ -12,26 +14,31 @@ const BookingModal = ({ elem, fetchModal, index }) => {
               fetchModal("close", index);
             }}
           />
-          <div className="price-subdivision">
-            <h3>{elem.booking_info.car_short_name}</h3>
-            <p>{elem.booking_info.car_long_name}</p>
-            <p>{elem.booking_info.car_agency_name}</p>
-            <p>
-              {format(
-                new Date(elem.booking_info.booking_start),
-                "dd LLL HH:mm",
-                { locale: fr }
-              )}{" "}
-              -{" "}
-              {format(
-                new Date(elem.booking_info.booking_return),
-                "dd LLL HH:mm",
-                { locale: fr }
-              )}
-            </p>
-            <p>Contact client : {elem.client_info.client_email}</p>
+          {/* Introduction */}
+          <div className="intro-booking-modal">
+            <div>
+              <h3>{elem.booking_info.car_short_name}</h3>
+              <p>{elem.booking_info.car_long_name}</p>
+              <p>{elem.booking_info.car_agency_name}</p>
+              <p>
+                {format(
+                  new Date(elem.booking_info.booking_start),
+                  "dd LLL HH:mm",
+                  { locale: fr }
+                )}{" "}
+                -{" "}
+                {format(
+                  new Date(elem.booking_info.booking_return),
+                  "dd LLL HH:mm",
+                  { locale: fr }
+                )}
+              </p>
+              <p>Contact client : {elem.client_info.client_email}</p>
+            </div>
+
             <img src={elem.booking_info.car_picture} alt="car booked" />
           </div>
+          {/* Price details */}
           <div className="price-subdivision">
             <h3>PERIODE DE LOCATION</h3>
             <div>
@@ -77,7 +84,7 @@ const BookingModal = ({ elem, fetchModal, index }) => {
               }
             )}
           </div>
-
+          {/* Total */}
           <div className="car-modal-total">
             <h3>TOTAL</h3>
             <p>

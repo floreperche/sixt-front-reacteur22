@@ -1,9 +1,12 @@
+// Component included in the Offer page : button to filter cars according to their type
+
 import { useState } from "react";
 
 const CarFilter = ({ typeFilter, setTypeFilter, setIsLoading }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="car-filter">
+      {/* Button to open filters */}
       <button
         onClick={() => {
           setIsOpen(!isOpen);
@@ -12,6 +15,7 @@ const CarFilter = ({ typeFilter, setTypeFilter, setIsLoading }) => {
       >
         <p>CATEGORIE DE VEHICULE</p> <i className=" ico-chevron-down" />{" "}
       </button>
+      {/* List of all options : if one option is selected/unselected, the tab typeFilter is updated */}
       {isOpen && (
         <div className="car-filter-open">
           <button
@@ -107,6 +111,7 @@ const CarFilter = ({ typeFilter, setTypeFilter, setIsLoading }) => {
 
             <i className=" ico-pickup" />
           </button>
+          {/* Reset button */}
           <button
             onClick={() => {
               const newTypeFilter = [...typeFilter];

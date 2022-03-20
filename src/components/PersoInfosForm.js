@@ -1,3 +1,5 @@
+// Component included in the PersoDetails Page : Form to fill personal informations
+
 import DatePicker from "react-datepicker";
 import range from "lodash/range";
 import { getMonth, getYear } from "date-fns";
@@ -39,12 +41,14 @@ const PersoInfosForm = ({
   return (
     <div className="personal-infos">
       <h2>INFORMATIONS PERSONNELLES</h2>
+      {/* Error message if one or more mandatory inputs are missing */}
       {errorMessage && (
         <p className="error-message">
           {errorMessage}{" "}
           <i className="ico-close" onClick={() => setErrorMessage()} />
         </p>
       )}
+      {/* Form with all the inputs */}
       <div>
         <p onClick={() => setCivility("M.")}>
           <i

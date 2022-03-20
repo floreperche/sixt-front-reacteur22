@@ -1,3 +1,4 @@
+/* Intro with image */
 .config .intro-car {
   position: relative;
 }
@@ -21,6 +22,7 @@
   font-size: 34px;
 }
 
+/* Subtitle with car spec */
 .config .car-subtitles {
   display: flex;
   justify-content: space-between;
@@ -41,6 +43,7 @@
   font-size: 12px;
 }
 
+/* Car details */
 .config .car-details {
   background-color: #ff5f00;
   display: flex;
@@ -48,6 +51,7 @@
   padding: 20px;
 }
 
+/* Car details : LEFT */
 .config .car-details .details-left {
   flex: 2;
   display: flex;
@@ -75,7 +79,7 @@
   font-size: 18px;
 }
 
-/* Included list */
+/* (Dynamic) summary of options */
 .included-list {
   display: flex;
   flex-wrap: wrap;
@@ -86,7 +90,7 @@
   font-size: 14px;
 }
 
-/* Options carousel */
+/* Option selection (Carousel) */
 .config .car-details .details-left .options-carousel {
   display: flex;
   flex-wrap: wrap;
@@ -148,6 +152,7 @@
   font-size: 24px;
 }
 
+/* Car details : RIGHT */
 .config .car-details .details-right {
   flex: 1;
   display: flex;
@@ -193,7 +198,7 @@
   font-size: 16px;
 }
 
-/* Price detail modal */
+/* Price detail modal (also used for the Admin Modal) */
 .price-modal-background {
   height: 100vh;
   width: 100vw;

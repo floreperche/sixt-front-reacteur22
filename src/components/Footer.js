@@ -1,6 +1,7 @@
+// Component included in all pages : Footer
+
 import "./Footer.css";
 
-// Header for all pages
 const Footer = () => {
   return (
     <footer className="wrapper">

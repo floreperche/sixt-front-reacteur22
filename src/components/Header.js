@@ -1,9 +1,10 @@
+// Component included in all pages (Header) but changing depending on the page
+
 import "./Header.css";
 import logo from "../assets/img/sixt-logo.png";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
-// Header for all pages
 const Header = ({ type, step, isConnected, setIsConnected }) => {
   return (
     <header className="wrapper">
@@ -13,6 +14,7 @@ const Header = ({ type, step, isConnected, setIsConnected }) => {
           <img src={logo} alt="logo Sixt" />
         </Link>
 
+        {/* Home version (Home and Admin page) */}
         {type === "home" && (
           <>
             <button className="selected">RENT</button>
@@ -25,6 +27,7 @@ const Header = ({ type, step, isConnected, setIsConnected }) => {
         )}
       </div>
 
+      {/* Step version (Offer, Config and PersoDetails pages) */}
       {type === "steps" && (
         <div className="step-follower">
           <div
@@ -51,6 +54,7 @@ const Header = ({ type, step, isConnected, setIsConnected }) => {
             <i className="ico-planet"></i> BACKOFFICE
           </button>
         </Link>
+        {/* Disconnect button if connected */}
         {isConnected && (
           <Link to="/" onClick={() => window.scrollTo(0, 0)}>
             <button

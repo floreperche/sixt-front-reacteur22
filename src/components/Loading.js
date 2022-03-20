@@ -1,4 +1,4 @@
-// Animation of loading parts
+// Component included in all pages : Animation of loading parts
 
 import "./Loading.css";
 

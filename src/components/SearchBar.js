@@ -1,3 +1,5 @@
+// Component included in varios pages (Home, Offer, Config): Search bar to find cars
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -26,6 +28,7 @@ const SearchBar = ({
   const [endTime, setEndTime] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
 
+  // Booking only from 8:00 to 18:00
   var minTime = new Date();
   minTime.setMinutes(0);
   minTime.setHours(8);
@@ -34,6 +37,7 @@ const SearchBar = ({
   maxTime.setMinutes(0);
   maxTime.setHours(18);
 
+  // Auto complete search to find an agency
   useEffect(() => {
     try {
       if (searchText.length >= 3) {
@@ -50,6 +54,7 @@ const SearchBar = ({
     }
   }, [searchText]);
 
+  // Check if hours are filed out in start and return dates
   useEffect(() => {
     if (startDate) {
       if (startDate.getHours() > 0) {
@@ -77,6 +82,7 @@ const SearchBar = ({
   return (
     <div>
       <div className="search-bar">
+        {/* Agency search */}
         <div className="search-text">
           <p>Retrait et retour</p>
 
@@ -96,6 +102,7 @@ const SearchBar = ({
             ></input>
           </div>
 
+          {/* Dynamic agency list when at least 3 letters are filed out */}
           {agencyList.length > 0 && (
             <div className="agency-box">
               {agencyList.map((elem) => {
@@ -120,6 +127,8 @@ const SearchBar = ({
             </div>
           )}
         </div>
+
+        {/* Start date */}
         <div className="start-date">
           <p>Date et heure de départ</p>
           <div>
@@ -142,6 +151,8 @@ const SearchBar = ({
             />
           </div>
         </div>
+
+        {/* End date */}
         <div className="end-date">
           <p>Date et heure de retour</p>
           <div>
@@ -162,6 +173,8 @@ const SearchBar = ({
             />
           </div>
         </div>
+
+        {/* Submit button (only if everything is filed) */}
         {type === "with-button" && (
           <div>
             {selectedAgency && startDate && endDate && startTime && endTime ? (
@@ -185,6 +198,8 @@ const SearchBar = ({
           </div>
         )}
       </div>
+
+      {/* Error message if at least one input is missing */}
       {errorMessage && (
         <div className="error-message">
           {errorMessage}{" "}

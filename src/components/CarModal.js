@@ -1,4 +1,4 @@
-// Car Modal component for the Offers page
+// Component included in the Offer page : Modal when the user clicks on a car
 
 import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";

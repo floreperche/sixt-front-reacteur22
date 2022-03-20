@@ -160,7 +160,7 @@ const Offers = ({
             )}
           </div>
 
-          {/* List of cars according to the search and filters */}
+          {/* Car list according to the search and filters */}
           {isLoading ? (
             <Loading />
           ) : (

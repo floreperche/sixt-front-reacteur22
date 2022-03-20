@@ -1,9 +1,12 @@
+// Component included in the Config Page : Modal to get the price details
+
 import { useState } from "react";
 
 const PriceDetailsModal = ({ numberOfDays, selectedCar, priceCalcul }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
+      {/* Button to open the modal */}
       <p
         onClick={() => {
           setIsOpen(true);
@@ -11,6 +14,7 @@ const PriceDetailsModal = ({ numberOfDays, selectedCar, priceCalcul }) => {
       >
         <i className="ico-chevron-right" /> Details du prix
       </p>
+      {/* Modal with different categories */}
       {isOpen && (
         <div className="price-modal-background">
           <div className="price-modal-window">
@@ -31,6 +35,7 @@ const PriceDetailsModal = ({ numberOfDays, selectedCar, priceCalcul }) => {
                 <p className="price">€ {priceCalcul("totalWithoutFees")}</p>
               </div>
             </div>
+
             <div className="price-subdivision">
               <h3>PROTECTIONS ET OPTIONS</h3>
               {selectedCar.carDetails.additionalCharges.map(
@@ -68,6 +73,7 @@ const PriceDetailsModal = ({ numberOfDays, selectedCar, priceCalcul }) => {
                 );
               })}
             </div>
+
             <div className="car-modal-total">
               <h3>TOTAL</h3>
               <p>
