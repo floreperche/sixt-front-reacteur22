@@ -22,27 +22,6 @@
   font-size: 34px;
 }
 
-/* Subtitle with car spec */
-.config .car-subtitles {
-  display: flex;
-  justify-content: space-between;
-  background-color: #191919;
-  color: white;
-  padding: 14px 20px;
-}
-
-.config .car-subtitles > div {
-  display: flex;
-  gap: 15px;
-}
-
-.config .car-subtitles > div > div {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 12px;
-}
-
 /* Car details */
 .config .car-details {
   background-color: #ff5f00;

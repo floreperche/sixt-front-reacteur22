@@ -5,6 +5,7 @@ import Header from "../../components/header/Header";
 import SearchBar from "../../components/search-bar/SearchBar";
 import PriceDetailsModal from "../../components/price-details/PriceDetailsModal";
 import OptionsCarousel from "../../components/options/OptionsCarousel";
+import CarDescription from "../../components/car-description/CarDescription.js";
 
 const Configuration = ({
   selectedAgency,
@@ -83,35 +84,10 @@ const Configuration = ({
         <img src={selectedCar.carDetails.splashImages[0]} alt="" />
         <h3>{selectedCar.name} </h3>
       </div>
-      {/* Subtitle with car spec */}
-      <div className="car-subtitles">
-        <p>{selectedCar.longSubline}</p>
-        <div>
-          <div>
-            <i className="ico-maxPassengers" /> {selectedCar.seats} sièges
-          </div>
-          <div>
-            <i className="ico-doors" /> {selectedCar.doors} portes
-          </div>
-          <div>
-            <i className="ico-automatic" />{" "}
-            {selectedCar.automatic ? <>Automatique</> : <>Manuelle</>}
-          </div>
-          <div>
-            <i className="ico-baggage" /> {selectedCar.baggage} bagages
-          </div>
-          {selectedCar.airCondition && (
-            <div>
-              <i className="ico-airCondition" /> Climatisation
-            </div>
-          )}
 
-          <div>
-            <i className="ico-driverRequirements" /> {selectedCar.driverMinAge}{" "}
-            ans
-          </div>
-        </div>
-      </div>
+      {/* Subtitle with car spec */}
+      <CarDescription selectedCar={selectedCar} />
+
       {/* Car details with options to select, price and action button */}
       <div className="car-details">
         <div className="details-left">
