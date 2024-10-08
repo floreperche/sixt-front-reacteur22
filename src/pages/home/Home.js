@@ -2,12 +2,9 @@ import "./Home.css";
 import map from "../../assets/img/sixt-in-the-world.png";
 import Header from "../../components/header/Header";
 import SearchBar from "../../components/search-bar/SearchBar";
+import HomeCarousel from "../../components/home-carousel/HomeCarousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 // Imports for the carousel
-import { Carousel } from "react-responsive-carousel";
-import carousel1 from "../../assets/img/carousel/carousel-1.jpeg";
-import carousel2 from "../../assets/img/carousel/carousel-2.jpeg";
-import carousel3 from "../../assets/img/carousel/carousel-3.jpeg";
 
 const Home = ({
   selectedAgency,
@@ -47,22 +44,7 @@ const Home = ({
       />
 
       {/* Carousel */}
-      <Carousel
-        showThumbs={false}
-        showStatus={false}
-        infiniteLoop="true"
-        autoPlay="true"
-      >
-        <div>
-          <img src={carousel1} alt="first carousel" />
-        </div>
-        <div>
-          <img src={carousel2} alt="second carousel" />
-        </div>
-        <div>
-          <img src={carousel3} alt="third carousel" />
-        </div>
-      </Carousel>
+      <HomeCarousel />
 
       {/* Rest of Home Page :  Map + App and social media infos */}
       <div className="map">
