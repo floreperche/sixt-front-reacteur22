@@ -1,11 +1,11 @@
 // Pages
-import Home from "./pages/Home";
-import Offers from "./pages/Offers";
-import Configuration from "./pages/Configuration";
-import PersoDetails from "./pages/PersoDetails";
-import Admin from "./pages/Admin";
+import Home from "./pages/home/Home";
+import Offers from "./pages/offers/Offers";
+import Configuration from "./pages/configuration/Configuration";
+import PersoDetails from "./pages/personal-details/PersoDetails";
+import Admin from "./pages/admin/Admin";
 import Footer from "./components/Footer";
-import Error from "./pages/Error";
+import Error from "./pages/error-page/Error";
 
 // Other imports
 import { useState } from "react";

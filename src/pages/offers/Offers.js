@@ -1,11 +1,11 @@
 import "./Offers.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import SearchBar from "../components/SearchBar";
-import Loading from "../components/Loading";
-import CarModal from "../components/CarModal";
-import CarFilter from "../components/CarFilter";
+import Header from "../../components/Header";
+import SearchBar from "../../components/SearchBar";
+import Loading from "../../components/Loading";
+import CarModal from "../../components/CarModal";
+import CarFilter from "../../components/CarFilter";
 
 const Offers = ({
   selectedAgency,
