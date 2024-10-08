@@ -1,10 +1,10 @@
 import "./Configuration.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import SearchBar from "../../components/SearchBar";
-import PriceDetailsModal from "../../components/PriceDetailsModal";
-import OptionsCarousel from "../../components/OptionsCarousel";
+import Header from "../../components/header/Header";
+import SearchBar from "../../components/search-bar/SearchBar";
+import PriceDetailsModal from "../../components/price-details/PriceDetailsModal";
+import OptionsCarousel from "../../components/options/OptionsCarousel";
 
 const Configuration = ({
   selectedAgency,

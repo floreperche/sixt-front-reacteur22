@@ -1,6 +1,6 @@
-import Header from "../../components/Header";
-import Loading from "../../components/Loading";
-import BookingModal from "../../components/BookingModal";
+import Header from "../../components/header/Header";
+import Loading from "../../components/loader/Loading";
+import BookingModal from "../../components/booking-modal/BookingModal";
 import { useState, useEffect } from "react";
 import "./Admin.css";
 import axios from "axios";

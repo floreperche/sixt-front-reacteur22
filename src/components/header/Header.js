@@ -1,7 +1,7 @@
 // Component included in all pages (Header) but changing depending on the page
 
 import "./Header.css";
-import logo from "../assets/img/sixt-logo.png";
+import logo from "../../assets/img/sixt-logo.png";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 

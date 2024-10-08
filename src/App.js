@@ -4,7 +4,7 @@ import Offers from "./pages/offers/Offers";
 import Configuration from "./pages/configuration/Configuration";
 import PersoDetails from "./pages/personal-details/PersoDetails";
 import Admin from "./pages/admin/Admin";
-import Footer from "./components/Footer";
+import Footer from "./components/footer/Footer";
 import Error from "./pages/error-page/Error";
 
 // Other imports
