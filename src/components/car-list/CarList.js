@@ -1,11 +1,9 @@
+import { useContext } from "react";
 import CarModal from "../car/CarModal";
+import { NumberOfDaysContext } from "../../provider/app-provider";
 
-const CarList = ({
-  resultsList,
-  numberOfDays,
-  setOfferList,
-  setSelectedCar,
-}) => {
+const CarList = ({ resultsList, setOfferList }) => {
+  const { numberOfDays } = useContext(NumberOfDaysContext);
   return (
     <div className="car-list">
       {resultsList.map((elem, index) => {
@@ -44,7 +42,6 @@ const CarList = ({
                 index={index}
                 setOfferList={setOfferList}
                 totalPrice={totalPrice}
-                setSelectedCar={setSelectedCar}
               />
             )}
           </>

@@ -1,6 +1,9 @@
 import "./CarDescription.css";
+import { useContext } from "react";
+import { SelectedCarContext } from "../../provider/app-provider";
 
-const CarDescription = ({ selectedCar }) => {
+const CarDescription = () => {
+  const { selectedCar } = useContext(SelectedCarContext);
   return (
     <div className="car-subtitles">
       <p>{selectedCar.longSubline}</p>

@@ -1,10 +1,12 @@
 // Component included in the Config Page : managing the option tab (not really a carousel actually...)
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { SelectedCarContext } from "../../provider/app-provider";
 
-const OptionsCarousel = ({ selectedCar, setSelectedCar }) => {
+const OptionsCarousel = () => {
   const [toReload, setToReload] = useState(false);
-
   const [extendOptions, setExtendOptions] = useState(false);
+  const { selectedCar } = useContext(SelectedCarContext);
+  const { setSelectedCar } = useContext(SelectedCarContext);
 
   return (
     // List of all options

@@ -2,15 +2,12 @@
 
 import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
+import { useContext } from "react";
+import { SelectedCarContext } from "../../provider/app-provider";
 
-const CarModal = ({
-  elem,
-  resultsList,
-  index,
-  setOfferList,
-  totalPrice,
-  setSelectedCar,
-}) => {
+const CarModal = ({ elem, resultsList, index, setOfferList, totalPrice }) => {
+  const { setSelectedCar } = useContext(SelectedCarContext);
+
   return (
     <div className="car-modal-background">
       <div className=" wrapper car-modal">
