@@ -1,6 +1,12 @@
 import "./PersoDetails.css";
 import { useState, useContext } from "react";
-import { SelectedAgencyContext } from "../../provider/selected-agency";
+import {
+  SelectedAgencyContext,
+  StartDateContext,
+  EndDateContext,
+  NumberOfDaysContext,
+  SelectedCarContext,
+} from "../../provider/app-provider";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Header from "../../components/header/Header";
@@ -10,16 +16,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 registerLocale("fr", fr);
 
-const PersoDetails = ({
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  numberOfDays,
-  setNumberOfDays,
-  selectedCar,
-  setSelectedCar,
-}) => {
+const PersoDetails = () => {
   const [civility, setCivility] = useState("");
   const [society, setSociety] = useState();
   const [firstName, setFirstName] = useState("");
@@ -36,6 +33,14 @@ const PersoDetails = ({
   const [bookingId, setBookingId] = useState();
   const { selectedAgency } = useContext(SelectedAgencyContext);
   const { setSelectedAgency } = useContext(SelectedAgencyContext);
+  const { startDate } = useContext(StartDateContext);
+  const { setStartDate } = useContext(StartDateContext);
+  const { endDate } = useContext(EndDateContext);
+  const { setEndDate } = useContext(EndDateContext);
+  const { numberOfDays } = useContext(NumberOfDaysContext);
+  const { setNumberOfDays } = useContext(NumberOfDaysContext);
+  const { selectedCar } = useContext(SelectedCarContext);
+  const { setSelectedCar } = useContext(SelectedCarContext);
 
   // Function when the form is submited to save the booking into the database (if a check of the mandatory inputs)
   const handleSubmit = async (event) => {

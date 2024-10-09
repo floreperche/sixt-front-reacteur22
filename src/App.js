@@ -8,20 +8,13 @@ import Footer from "./components/footer/Footer";
 import Error from "./pages/error-page/Error";
 
 // Other imports
-import { useState } from "react";
 import "./App.css";
 import "./assets/icons/icons.css";
 import "./assets/fonts/stylesheet.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { SelectedAgencyProvider } from "./provider/selected-agency";
+import { AppProvider } from "./provider/app-provider";
 
 function App() {
-  // UseStates common to many routes
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [numberOfDays, setNumberOfDays] = useState();
-  const [selectedCar, setSelectedCar] = useState();
-
   return (
     <Router>
       <Routes>
@@ -29,69 +22,36 @@ function App() {
         <Route
           path="/"
           element={
-            <SelectedAgencyProvider>
-              <Home
-                startDate={startDate}
-                setStartDate={setStartDate}
-                endDate={endDate}
-                setEndDate={setEndDate}
-                numberOfDays={numberOfDays}
-                setNumberOfDays={setNumberOfDays}
-              />
-            </SelectedAgencyProvider>
+            <AppProvider>
+              <Home />
+            </AppProvider>
           }
         ></Route>
         {/* Offers Route */}
         <Route
           path="/offerlist"
           element={
-            <SelectedAgencyProvider>
-              <Offers
-                startDate={startDate}
-                setStartDate={setStartDate}
-                endDate={endDate}
-                setEndDate={setEndDate}
-                numberOfDays={numberOfDays}
-                setNumberOfDays={setNumberOfDays}
-                setSelectedCar={setSelectedCar}
-              />
-            </SelectedAgencyProvider>
+            <AppProvider>
+              <Offers />
+            </AppProvider>
           }
         ></Route>
         {/* Configuration Route */}
         <Route
           path="/offerconfig"
           element={
-            <SelectedAgencyProvider>
-              <Configuration
-                startDate={startDate}
-                setStartDate={setStartDate}
-                endDate={endDate}
-                setEndDate={setEndDate}
-                numberOfDays={numberOfDays}
-                setNumberOfDays={setNumberOfDays}
-                selectedCar={selectedCar}
-                setSelectedCar={setSelectedCar}
-              />
-            </SelectedAgencyProvider>
+            <AppProvider>
+              <Configuration />
+            </AppProvider>
           }
         ></Route>
         {/* PersoDetails Route */}
         <Route
           path="/personaldetails"
           element={
-            <SelectedAgencyProvider>
-              <PersoDetails
-                startDate={startDate}
-                setStartDate={setStartDate}
-                endDate={endDate}
-                setEndDate={setEndDate}
-                numberOfDays={numberOfDays}
-                setNumberOfDays={setNumberOfDays}
-                selectedCar={selectedCar}
-                setSelectedCar={setSelectedCar}
-              />
-            </SelectedAgencyProvider>
+            <AppProvider>
+              <PersoDetails />
+            </AppProvider>
           }
         ></Route>
         {/* Admin Route */}

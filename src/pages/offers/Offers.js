@@ -1,6 +1,10 @@
 import "./Offers.css";
 import { useState, useEffect, useContext } from "react";
-import { SelectedAgencyContext } from "../../provider/selected-agency";
+import {
+  SelectedAgencyContext,
+  StartDateContext,
+  EndDateContext,
+} from "../../provider/app-provider";
 import axios from "axios";
 import Header from "../../components//header/Header";
 import SearchBar from "../../components/search-bar/SearchBar";
@@ -9,15 +13,7 @@ import CarList from "../../components/car-list/CarList";
 
 import CarFilter from "../../components/car/CarFilter";
 
-const Offers = ({
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  numberOfDays,
-  setNumberOfDays,
-  setSelectedCar,
-}) => {
+const Offers = () => {
   const [offerList, setOfferList] = useState([]);
   const [filteredOfferList, setFilteredOfferList] = useState([]);
   const [resultsList, setResultsList] = useState([]);
@@ -31,6 +27,8 @@ const Offers = ({
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const { selectedAgency } = useContext(SelectedAgencyContext);
+  const { startDate } = useContext(StartDateContext);
+  const { endDate } = useContext(EndDateContext);
 
   // Getting car list for an agency, start and return date (with car details)
   useEffect(() => {
@@ -131,15 +129,7 @@ const Offers = ({
       {/* Header */}
       <Header type="steps" step="one" />
       {/* SearchBar */}
-      <SearchBar
-        type="without-button"
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
-        numberOfDays={numberOfDays}
-        setNumberOfDays={setNumberOfDays}
-      />
+      <SearchBar type="without-button" />
 
       {/* Bar with the filter button and the result number */}
       {errorMessage ? (
@@ -163,12 +153,7 @@ const Offers = ({
           {isLoading ? (
             <Loading />
           ) : (
-            <CarList
-              resultsList={resultsList}
-              numberOfDays={numberOfDays}
-              setOfferList={setOfferList}
-              setSelectedCar={setSelectedCar}
-            />
+            <CarList resultsList={resultsList} setOfferList={setOfferList} />
           )}
         </>
       )}
