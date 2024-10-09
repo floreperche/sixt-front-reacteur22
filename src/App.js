@@ -13,10 +13,10 @@ import "./App.css";
 import "./assets/icons/icons.css";
 import "./assets/fonts/stylesheet.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { SelectedAgencyProvider } from "./provider/selected-agency";
 
 function App() {
   // UseStates common to many routes
-  const [selectedAgency, setSelectedAgency] = useState();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [numberOfDays, setNumberOfDays] = useState();
@@ -29,69 +29,69 @@ function App() {
         <Route
           path="/"
           element={
-            <Home
-              selectedAgency={selectedAgency}
-              setSelectedAgency={setSelectedAgency}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              endDate={endDate}
-              setEndDate={setEndDate}
-              numberOfDays={numberOfDays}
-              setNumberOfDays={setNumberOfDays}
-            />
+            <SelectedAgencyProvider>
+              <Home
+                startDate={startDate}
+                setStartDate={setStartDate}
+                endDate={endDate}
+                setEndDate={setEndDate}
+                numberOfDays={numberOfDays}
+                setNumberOfDays={setNumberOfDays}
+              />
+            </SelectedAgencyProvider>
           }
         ></Route>
         {/* Offers Route */}
         <Route
           path="/offerlist"
           element={
-            <Offers
-              selectedAgency={selectedAgency}
-              setSelectedAgency={setSelectedAgency}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              endDate={endDate}
-              setEndDate={setEndDate}
-              numberOfDays={numberOfDays}
-              setNumberOfDays={setNumberOfDays}
-              setSelectedCar={setSelectedCar}
-            />
+            <SelectedAgencyProvider>
+              <Offers
+                startDate={startDate}
+                setStartDate={setStartDate}
+                endDate={endDate}
+                setEndDate={setEndDate}
+                numberOfDays={numberOfDays}
+                setNumberOfDays={setNumberOfDays}
+                setSelectedCar={setSelectedCar}
+              />
+            </SelectedAgencyProvider>
           }
         ></Route>
         {/* Configuration Route */}
         <Route
           path="/offerconfig"
           element={
-            <Configuration
-              selectedAgency={selectedAgency}
-              setSelectedAgency={setSelectedAgency}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              endDate={endDate}
-              setEndDate={setEndDate}
-              numberOfDays={numberOfDays}
-              setNumberOfDays={setNumberOfDays}
-              selectedCar={selectedCar}
-              setSelectedCar={setSelectedCar}
-            />
+            <SelectedAgencyProvider>
+              <Configuration
+                startDate={startDate}
+                setStartDate={setStartDate}
+                endDate={endDate}
+                setEndDate={setEndDate}
+                numberOfDays={numberOfDays}
+                setNumberOfDays={setNumberOfDays}
+                selectedCar={selectedCar}
+                setSelectedCar={setSelectedCar}
+              />
+            </SelectedAgencyProvider>
           }
         ></Route>
         {/* PersoDetails Route */}
         <Route
           path="/personaldetails"
           element={
-            <PersoDetails
-              selectedAgency={selectedAgency}
-              setSelectedAgency={setSelectedAgency}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              endDate={endDate}
-              setEndDate={setEndDate}
-              numberOfDays={numberOfDays}
-              setNumberOfDays={setNumberOfDays}
-              selectedCar={selectedCar}
-              setSelectedCar={setSelectedCar}
-            />
+            <SelectedAgencyProvider>
+              <PersoDetails
+                startDate={startDate}
+                setStartDate={setStartDate}
+                endDate={endDate}
+                setEndDate={setEndDate}
+                numberOfDays={numberOfDays}
+                setNumberOfDays={setNumberOfDays}
+                selectedCar={selectedCar}
+                setSelectedCar={setSelectedCar}
+              />
+            </SelectedAgencyProvider>
           }
         ></Route>
         {/* Admin Route */}

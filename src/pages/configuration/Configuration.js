@@ -5,8 +5,6 @@ import CarDescription from "../../components/car-description/CarDescription.js";
 import BookingConfiguration from "../../components/booking-configuration/BookingConfiguration.js";
 
 const Configuration = ({
-  selectedAgency,
-  setSelectedAgency,
   startDate,
   setStartDate,
   endDate,
@@ -23,8 +21,6 @@ const Configuration = ({
       {/* Search bar */}
       <SearchBar
         type="without-button"
-        selectedAgency={selectedAgency}
-        setSelectedAgency={setSelectedAgency}
         startDate={startDate}
         setStartDate={setStartDate}
         endDate={endDate}

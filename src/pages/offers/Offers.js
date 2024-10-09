@@ -1,5 +1,6 @@
 import "./Offers.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { SelectedAgencyContext } from "../../provider/selected-agency";
 import axios from "axios";
 import Header from "../../components//header/Header";
 import SearchBar from "../../components/search-bar/SearchBar";
@@ -9,8 +10,6 @@ import CarList from "../../components/car-list/CarList";
 import CarFilter from "../../components/car/CarFilter";
 
 const Offers = ({
-  selectedAgency,
-  setSelectedAgency,
   startDate,
   setStartDate,
   endDate,
@@ -31,6 +30,7 @@ const Offers = ({
   ]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const { selectedAgency } = useContext(SelectedAgencyContext);
 
   // Getting car list for an agency, start and return date (with car details)
   useEffect(() => {
@@ -133,8 +133,6 @@ const Offers = ({
       {/* SearchBar */}
       <SearchBar
         type="without-button"
-        selectedAgency={selectedAgency}
-        setSelectedAgency={setSelectedAgency}
         startDate={startDate}
         setStartDate={setStartDate}
         endDate={endDate}

@@ -7,8 +7,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 // Imports for the carousel
 
 const Home = ({
-  selectedAgency,
-  setSelectedAgency,
   startDate,
   setStartDate,
   endDate,
@@ -31,8 +29,6 @@ const Home = ({
       {/* Search bar */}
       <SearchBar
         type="with-button"
-        selectedAgency={selectedAgency}
-        setSelectedAgency={setSelectedAgency}
         startDate={startDate}
         setStartDate={setStartDate}
         endDate={endDate}
