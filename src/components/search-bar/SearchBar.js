@@ -2,12 +2,7 @@
 
 import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import {
-  SelectedAgencyContext,
-  StartDateContext,
-  EndDateContext,
-  NumberOfDaysContext,
-} from "../../provider/app-provider";
+import { BookingContext } from "../../provider/booking-provider";
 import axios from "axios";
 import { fr } from "date-fns/locale";
 import DatePicker from "react-datepicker";
@@ -23,13 +18,15 @@ const SearchBar = ({ type }) => {
   const [startTime, setStartTime] = useState(false);
   const [endTime, setEndTime] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-  const { selectedAgency } = useContext(SelectedAgencyContext);
-  const { setSelectedAgency } = useContext(SelectedAgencyContext);
-  const { startDate } = useContext(StartDateContext);
-  const { setStartDate } = useContext(StartDateContext);
-  const { endDate } = useContext(EndDateContext);
-  const { setEndDate } = useContext(EndDateContext);
-  const { setNumberOfDays } = useContext(NumberOfDaysContext);
+  const {
+    selectedAgency,
+    setSelectedAgency,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    setNumberOfDays,
+  } = useContext(BookingContext);
 
   // Booking only from 8:00 to 18:00
   var minTime = new Date();

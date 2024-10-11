@@ -4,10 +4,10 @@ import SearchBar from "../../components/search-bar/SearchBar";
 import CarDescription from "../../components/car-description/CarDescription.js";
 import BookingConfiguration from "../../components/booking-configuration/BookingConfiguration.js";
 import { useContext } from "react";
-import { SelectedCarContext } from "../../provider/app-provider.js";
+import { BookingContext } from "../../provider/booking-provider.js";
 
 const Configuration = () => {
-  const { selectedCar } = useContext(SelectedCarContext);
+  const { selectedCar } = useContext(BookingContext);
 
   return (
     <div className="config wrapper">

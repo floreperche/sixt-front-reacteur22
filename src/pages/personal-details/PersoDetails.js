@@ -1,12 +1,6 @@
 import "./PersoDetails.css";
 import { useState, useContext } from "react";
-import {
-  SelectedAgencyContext,
-  StartDateContext,
-  EndDateContext,
-  NumberOfDaysContext,
-  SelectedCarContext,
-} from "../../provider/app-provider";
+import { BookingContext } from "../../provider/booking-provider";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Header from "../../components/header/Header";
@@ -31,16 +25,18 @@ const PersoDetails = () => {
   const [errorMessage, setErrorMessage] = useState();
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [bookingId, setBookingId] = useState();
-  const { selectedAgency } = useContext(SelectedAgencyContext);
-  const { setSelectedAgency } = useContext(SelectedAgencyContext);
-  const { startDate } = useContext(StartDateContext);
-  const { setStartDate } = useContext(StartDateContext);
-  const { endDate } = useContext(EndDateContext);
-  const { setEndDate } = useContext(EndDateContext);
-  const { numberOfDays } = useContext(NumberOfDaysContext);
-  const { setNumberOfDays } = useContext(NumberOfDaysContext);
-  const { selectedCar } = useContext(SelectedCarContext);
-  const { setSelectedCar } = useContext(SelectedCarContext);
+  const {
+    selectedAgency,
+    setSelectedAgency,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    numberOfDays,
+    setNumberOfDays,
+    selectedCar,
+    setSelectedCar,
+  } = useContext(BookingContext);
 
   // Function when the form is submited to save the booking into the database (if a check of the mandatory inputs)
   const handleSubmit = async (event) => {

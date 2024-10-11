@@ -1,10 +1,6 @@
 import "./Offers.css";
 import { useState, useEffect, useContext } from "react";
-import {
-  SelectedAgencyContext,
-  StartDateContext,
-  EndDateContext,
-} from "../../provider/app-provider";
+import { BookingContext } from "../../provider/booking-provider";
 import axios from "axios";
 import Header from "../../components//header/Header";
 import SearchBar from "../../components/search-bar/SearchBar";
@@ -26,9 +22,7 @@ const Offers = () => {
   ]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const { selectedAgency } = useContext(SelectedAgencyContext);
-  const { startDate } = useContext(StartDateContext);
-  const { endDate } = useContext(EndDateContext);
+  const { selectedAgency, startDate, endDate } = useContext(BookingContext);
 
   // Getting car list for an agency, start and return date (with car details)
   useEffect(() => {

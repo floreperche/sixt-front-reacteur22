@@ -2,14 +2,10 @@ import PriceDetailsModal from "../price-details/PriceDetailsModal";
 import OptionsCarousel from "../options/OptionsCarousel";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import {
-  NumberOfDaysContext,
-  SelectedCarContext,
-} from "../../provider/app-provider";
+import { BookingContext } from "../../provider/booking-provider";
 
 const BookingConfiguration = () => {
-  const { numberOfDays } = useContext(NumberOfDaysContext);
-  const { selectedCar } = useContext(SelectedCarContext);
+  const { numberOfDays, selectedCar } = useContext(BookingContext);
 
   // Function to calcule prices (total price, total price and price by day without fees)
   const priceCalcul = (result) => {

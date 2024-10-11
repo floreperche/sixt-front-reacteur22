@@ -3,10 +3,10 @@
 import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import { useContext } from "react";
-import { SelectedCarContext } from "../../provider/app-provider";
+import { BookingContext } from "../../provider/booking-provider";
 
 const CarModal = ({ elem, resultsList, index, setOfferList, totalPrice }) => {
-  const { setSelectedCar } = useContext(SelectedCarContext);
+  const { setSelectedCar } = useContext(BookingContext);
 
   return (
     <div className="car-modal-background">

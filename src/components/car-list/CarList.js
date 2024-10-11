@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import CarModal from "../car/CarModal";
-import { NumberOfDaysContext } from "../../provider/app-provider";
+import { BookingContext } from "../../provider/booking-provider";
 
 const CarList = ({ resultsList, setOfferList }) => {
-  const { numberOfDays } = useContext(NumberOfDaysContext);
+  const { numberOfDays } = useContext(BookingContext);
   return (
     <div className="car-list">
       {resultsList.map((elem, index) => {
