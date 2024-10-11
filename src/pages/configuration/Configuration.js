@@ -3,35 +3,18 @@ import Header from "../../components/header/Header";
 import SearchBar from "../../components/search-bar/SearchBar";
 import CarDescription from "../../components/car-description/CarDescription.js";
 import BookingConfiguration from "../../components/booking-configuration/BookingConfiguration.js";
+import { useContext } from "react";
+import { BookingContext } from "../../provider/booking-provider.js";
 
-const Configuration = ({
-  selectedAgency,
-  setSelectedAgency,
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  numberOfDays,
-  setNumberOfDays,
-  selectedCar,
-  setSelectedCar,
-}) => {
+const Configuration = () => {
+  const { selectedCar } = useContext(BookingContext);
+
   return (
     <div className="config wrapper">
       {/* Header */}
       <Header type="steps" step="two" />
       {/* Search bar */}
-      <SearchBar
-        type="without-button"
-        selectedAgency={selectedAgency}
-        setSelectedAgency={setSelectedAgency}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
-        numberOfDays={numberOfDays}
-        setNumberOfDays={setNumberOfDays}
-      />
+      <SearchBar type="without-button" />
       {/* Intro with image */}
       <div className="intro-car">
         <img src={selectedCar.carDetails.splashImages[0]} alt="" />
@@ -39,14 +22,10 @@ const Configuration = ({
       </div>
 
       {/* Subtitle with car spec */}
-      <CarDescription selectedCar={selectedCar} />
+      <CarDescription />
 
       {/* Car details with options to select, price and action button */}
-      <BookingConfiguration
-        selectedCar={selectedCar}
-        setSelectedCar={setSelectedCar}
-        numberOfDays={numberOfDays}
-      />
+      <BookingConfiguration />
     </div>
   );
 };

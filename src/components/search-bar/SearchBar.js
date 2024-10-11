@@ -1,7 +1,8 @@
 // Component included in varios pages (Home, Offer, Config): Search bar to find cars
 
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { BookingContext } from "../../provider/booking-provider";
 import axios from "axios";
 import { fr } from "date-fns/locale";
 import DatePicker from "react-datepicker";
@@ -11,22 +12,21 @@ import { registerLocale } from "react-datepicker";
 import { formatDistanceStrict } from "date-fns";
 registerLocale("fr", fr);
 
-const SearchBar = ({
-  type,
-  selectedAgency,
-  setSelectedAgency,
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  numberOfDays,
-  setNumberOfDays,
-}) => {
+const SearchBar = ({ type }) => {
   const [searchText, setSearchText] = useState("");
   const [agencyList, setAgencyList] = useState([]);
   const [startTime, setStartTime] = useState(false);
   const [endTime, setEndTime] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
+  const {
+    selectedAgency,
+    setSelectedAgency,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    setNumberOfDays,
+  } = useContext(BookingContext);
 
   // Booking only from 8:00 to 18:00
   var minTime = new Date();

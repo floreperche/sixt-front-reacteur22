@@ -6,18 +6,7 @@ import HomeCarousel from "../../components/home-carousel/HomeCarousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 // Imports for the carousel
 
-const Home = ({
-  selectedAgency,
-  setSelectedAgency,
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  testData,
-  setTestData,
-  numberOfDays,
-  setNumberOfDays,
-}) => {
+const Home = ({ testData, setTestData }) => {
   return (
     <div className="wrapper">
       {/* Header */}
@@ -31,16 +20,8 @@ const Home = ({
       {/* Search bar */}
       <SearchBar
         type="with-button"
-        selectedAgency={selectedAgency}
-        setSelectedAgency={setSelectedAgency}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
         testData={testData}
         setTestData={setTestData}
-        numberOfDays={numberOfDays}
-        setNumberOfDays={setNumberOfDays}
       />
 
       {/* Carousel */}

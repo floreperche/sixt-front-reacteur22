@@ -1,9 +1,12 @@
 // Component included in the Config Page : Modal to get the price details
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { BookingContext } from "../../provider/booking-provider";
 
-const PriceDetailsModal = ({ numberOfDays, selectedCar, priceCalcul }) => {
+const PriceDetailsModal = ({ priceCalcul }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { numberOfDays, selectedCar } = useContext(BookingContext);
+
   return (
     <div>
       {/* Button to open the modal */}

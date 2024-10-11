@@ -8,99 +8,33 @@ import Footer from "./components/footer/Footer";
 import Error from "./pages/error-page/Error";
 
 // Other imports
-import { useState } from "react";
 import "./App.css";
 import "./assets/icons/icons.css";
 import "./assets/fonts/stylesheet.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BookingProvider } from "./provider/booking-provider";
 
 function App() {
-  // UseStates common to many routes
-  const [selectedAgency, setSelectedAgency] = useState();
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [numberOfDays, setNumberOfDays] = useState();
-  const [selectedCar, setSelectedCar] = useState();
-
   return (
-    <Router>
-      <Routes>
-        {/* Home Route */}
-        <Route
-          path="/"
-          element={
-            <Home
-              selectedAgency={selectedAgency}
-              setSelectedAgency={setSelectedAgency}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              endDate={endDate}
-              setEndDate={setEndDate}
-              numberOfDays={numberOfDays}
-              setNumberOfDays={setNumberOfDays}
-            />
-          }
-        ></Route>
-        {/* Offers Route */}
-        <Route
-          path="/offerlist"
-          element={
-            <Offers
-              selectedAgency={selectedAgency}
-              setSelectedAgency={setSelectedAgency}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              endDate={endDate}
-              setEndDate={setEndDate}
-              numberOfDays={numberOfDays}
-              setNumberOfDays={setNumberOfDays}
-              setSelectedCar={setSelectedCar}
-            />
-          }
-        ></Route>
-        {/* Configuration Route */}
-        <Route
-          path="/offerconfig"
-          element={
-            <Configuration
-              selectedAgency={selectedAgency}
-              setSelectedAgency={setSelectedAgency}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              endDate={endDate}
-              setEndDate={setEndDate}
-              numberOfDays={numberOfDays}
-              setNumberOfDays={setNumberOfDays}
-              selectedCar={selectedCar}
-              setSelectedCar={setSelectedCar}
-            />
-          }
-        ></Route>
-        {/* PersoDetails Route */}
-        <Route
-          path="/personaldetails"
-          element={
-            <PersoDetails
-              selectedAgency={selectedAgency}
-              setSelectedAgency={setSelectedAgency}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              endDate={endDate}
-              setEndDate={setEndDate}
-              numberOfDays={numberOfDays}
-              setNumberOfDays={setNumberOfDays}
-              selectedCar={selectedCar}
-              setSelectedCar={setSelectedCar}
-            />
-          }
-        ></Route>
-        {/* Admin Route */}
-        <Route path="/admin" element={<Admin />}></Route>
-        {/* All Routes > redirecting Home */}
-        <Route path="*" element={<Error />}></Route>
-      </Routes>
-      <Footer />
-    </Router>
+    <BookingProvider>
+      <Router>
+        <Routes>
+          {/* Home Route */}
+          <Route path="/" element={<Home />}></Route>
+          {/* Offers Route */}
+          <Route path="/offerlist" element={<Offers />}></Route>
+          {/* Configuration Route */}
+          <Route path="/offerconfig" element={<Configuration />}></Route>
+          {/* PersoDetails Route */}
+          <Route path="/personaldetails" element={<PersoDetails />}></Route>
+          {/* Admin Route */}
+          <Route path="/admin" element={<Admin />}></Route>
+          {/* All Routes > redirecting Home */}
+          <Route path="*" element={<Error />}></Route>
+        </Routes>
+        <Footer />
+      </Router>
+    </BookingProvider>
   );
 }
 
