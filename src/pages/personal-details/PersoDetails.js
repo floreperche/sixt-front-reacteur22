@@ -1,5 +1,5 @@
 import "./PersoDetails.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useReducer } from "react";
 import { BookingContext } from "../../provider/booking-provider";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -11,17 +11,38 @@ import { registerLocale } from "react-datepicker";
 registerLocale("fr", fr);
 
 const PersoDetails = () => {
-  const [civility, setCivility] = useState("");
-  const [society, setSociety] = useState();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState();
-  const [street, setStreet] = useState("");
-  const [postalCode, setPostalCode] = useState();
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [birthday, setBirthday] = useState();
+  const reducerFn = (state, action) => {
+    switch (action.type) {
+      case "UPDATE_VALUE":
+        return {
+          ...state,
+          [action.payload.key]: action.payload.value,
+        };
+      case "CLEAN_VALUES":
+        return {
+          initialState,
+        };
+      default:
+        return state;
+    }
+  };
+
+  const initialState = {
+    civility: "",
+    society: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    street: "",
+    postalCode: "",
+    city: "",
+    country: "",
+    birthday: "",
+  };
+
+  const [userData, setUserData] = useReducer(reducerFn, initialState);
+
   const [errorMessage, setErrorMessage] = useState();
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [bookingId, setBookingId] = useState();
@@ -43,29 +64,29 @@ const PersoDetails = () => {
     try {
       event.preventDefault();
       if (
-        firstName &&
-        lastName &&
-        email &&
-        phoneNumber &&
-        street &&
-        postalCode &&
-        city &&
-        birthday
+        userData.firstName &&
+        userData.lastName &&
+        userData.email &&
+        userData.phoneNumber &&
+        userData.street &&
+        userData.postalCode &&
+        userData.city &&
+        userData.birthday
       ) {
         const response = await axios.post(
           `https://flore-perche-sixt.herokuapp.com/booking/create`,
           {
-            civility: civility,
-            society: society,
-            firstname: firstName,
-            lastname: lastName,
-            email: email,
-            phonenumber: phoneNumber,
-            birthday: birthday,
-            street: street,
-            postalcode: postalCode,
-            city: city,
-            country: country,
+            civility: userData.civility,
+            society: userData.society,
+            firstname: userData.firstName,
+            lastname: userData.lastName,
+            email: userData.email,
+            phonenumber: userData.phoneNumber,
+            birthday: userData.birthday,
+            street: userData.street,
+            postalcode: userData.postalCode,
+            city: userData.city,
+            country: userData.country,
             booking_start: startDate,
             booking_return: endDate,
             booking_duration: numberOfDays,
@@ -102,21 +123,10 @@ const PersoDetails = () => {
 
       {/* Personal informations form */}
       <PersoInfosForm
+        userData={userData}
+        setUserData={setUserData}
         errorMessage={errorMessage}
         setErrorMessage={setErrorMessage}
-        setCivility={setCivility}
-        civility={civility}
-        setSociety={setSociety}
-        setFirstName={setFirstName}
-        setLastName={setLastName}
-        setEmail={setEmail}
-        setPhoneNumber={setPhoneNumber}
-        setStreet={setStreet}
-        setPostalCode={setPostalCode}
-        setCity={setCity}
-        setCountry={setCountry}
-        birthday={birthday}
-        setBirthday={setBirthday}
       />
 
       {/* Booking recap */}
@@ -218,17 +228,9 @@ const PersoDetails = () => {
                   setEndDate();
                   setNumberOfDays();
                   setSelectedCar();
-                  setCivility();
-                  setSociety();
-                  setFirstName();
-                  setLastName();
-                  setEmail();
-                  setPhoneNumber();
-                  setStreet();
-                  setPostalCode();
-                  setCity();
-                  setCountry();
-                  setBirthday();
+                  setUserData({
+                    type: "CLEAN_VALUES",
+                  });
                   setErrorMessage();
                   setIsConfirmed();
                 }}
