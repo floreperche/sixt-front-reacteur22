@@ -1,47 +1,18 @@
 import "./PersoDetails.css";
-import { useState, useContext, useReducer } from "react";
+import { useState, useContext } from "react";
 import { BookingContext } from "../../provider/booking-provider";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Header from "../../components/header/Header";
 import PersoInfosForm from "../../components/personal-infos/PersoInfosForm";
+import { UserDataReducer } from "../../reducer/user-data-reducer";
 import { fr } from "date-fns/locale/";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 registerLocale("fr", fr);
 
 const PersoDetails = () => {
-  const reducerFn = (state, action) => {
-    switch (action.type) {
-      case "UPDATE_VALUE":
-        return {
-          ...state,
-          [action.payload.key]: action.payload.value,
-        };
-      case "CLEAN_VALUES":
-        return {
-          initialState,
-        };
-      default:
-        return state;
-    }
-  };
-
-  const initialState = {
-    civility: "",
-    society: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    street: "",
-    postalCode: "",
-    city: "",
-    country: "",
-    birthday: "",
-  };
-
-  const [userData, setUserData] = useReducer(reducerFn, initialState);
+  const { userData, setUserData } = UserDataReducer();
 
   const [errorMessage, setErrorMessage] = useState();
   const [isConfirmed, setIsConfirmed] = useState(false);
