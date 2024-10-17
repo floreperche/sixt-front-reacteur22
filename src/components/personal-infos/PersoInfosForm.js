@@ -5,21 +5,10 @@ import range from "lodash/range";
 import { getMonth, getYear } from "date-fns";
 
 const PersoInfosForm = ({
+  userData,
+  setUserData,
   errorMessage,
   setErrorMessage,
-  setCivility,
-  civility,
-  setSociety,
-  setFirstName,
-  setLastName,
-  setEmail,
-  setPhoneNumber,
-  setStreet,
-  setPostalCode,
-  setCity,
-  setCountry,
-  birthday,
-  setBirthday,
 }) => {
   // Parameters for birthday input
   const years = range(1900, getYear(new Date()) + 1, 1);
@@ -50,16 +39,34 @@ const PersoInfosForm = ({
       )}
       {/* Form with all the inputs */}
       <div>
-        <p onClick={() => setCivility("M.")}>
+        <p
+          onClick={() =>
+            setUserData({
+              type: "UPDATE_VALUE",
+              payload: { key: "civility", value: "M." },
+            })
+          }
+        >
           <i
-            className={civility === "M." ? "ico-radio-selected" : "ico-radio"}
+            className={
+              userData.civility === "M." ? "ico-radio-selected" : "ico-radio"
+            }
           />{" "}
           M. **
         </p>
 
-        <p onClick={() => setCivility("Mme")}>
+        <p
+          onClick={() =>
+            setUserData({
+              type: "UPDATE_VALUE",
+              payload: { key: "civility", value: "Mme" },
+            })
+          }
+        >
           <i
-            className={civility === "Mme" ? "ico-radio-selected" : "ico-radio"}
+            className={
+              userData.civility === "Mme" ? "ico-radio-selected" : "ico-radio"
+            }
           />{" "}
           Mme **
         </p>
@@ -68,7 +75,10 @@ const PersoInfosForm = ({
         type="text"
         placeholder="Société"
         onChange={(event) => {
-          setSociety(event.target.value);
+          setUserData({
+            type: "UPDATE_VALUE",
+            payload: { key: "society", value: event.target.value },
+          });
         }}
       />
       <div className="perso-input">
@@ -76,14 +86,20 @@ const PersoInfosForm = ({
           type="text"
           placeholder="Prénom *"
           onChange={(event) => {
-            setFirstName(event.target.value);
+            setUserData({
+              type: "UPDATE_VALUE",
+              payload: { key: "firstName", value: event.target.value },
+            });
           }}
         />
         <input
           type="text"
           placeholder="Nom de famille *"
           onChange={(event) => {
-            setLastName(event.target.value);
+            setUserData({
+              type: "UPDATE_VALUE",
+              payload: { key: "lastName", value: event.target.value },
+            });
           }}
         />
       </div>
@@ -92,14 +108,20 @@ const PersoInfosForm = ({
           type="email"
           placeholder="Adresse Mail*"
           onChange={(event) => {
-            setEmail(event.target.value);
+            setUserData({
+              type: "UPDATE_VALUE",
+              payload: { key: "email", value: event.target.value },
+            });
           }}
         />
         <input
           type="text"
           placeholder="Numéro de téléphone *"
           onChange={(event) => {
-            setPhoneNumber(event.target.value);
+            setUserData({
+              type: "UPDATE_VALUE",
+              payload: { key: "phoneNumber", value: event.target.value },
+            });
           }}
         />
       </div>
@@ -108,7 +130,10 @@ const PersoInfosForm = ({
           type="text"
           placeholder="Rue *"
           onChange={(event) => {
-            setStreet(event.target.value);
+            setUserData({
+              type: "UPDATE_VALUE",
+              payload: { key: "street", value: event.target.value },
+            });
           }}
         />
         <div>
@@ -116,14 +141,20 @@ const PersoInfosForm = ({
             type="text"
             placeholder="Code postal *"
             onChange={(event) => {
-              setPostalCode(event.target.value);
+              setUserData({
+                type: "UPDATE_VALUE",
+                payload: { key: "postalCode", value: event.target.value },
+              });
             }}
           />
           <input
             type="text"
             placeholder="Ville *"
             onChange={(event) => {
-              setCity(event.target.value);
+              setUserData({
+                type: "UPDATE_VALUE",
+                payload: { key: "city", value: event.target.value },
+              });
             }}
           />
         </div>
@@ -132,7 +163,10 @@ const PersoInfosForm = ({
         type="text"
         placeholder="Pays *"
         onChange={(event) => {
-          setCountry(event.target.value);
+          setUserData({
+            type: "UPDATE_VALUE",
+            payload: { key: "country", value: event.target.value },
+          });
         }}
       />
       <div className="birthday">
@@ -140,8 +174,13 @@ const PersoInfosForm = ({
         {/* Input for birthday with year and month picker */}
         <DatePicker
           className="birthday"
-          selected={birthday}
-          onChange={(event) => setBirthday(event)}
+          selected={userData.birthday}
+          onChange={(event) =>
+            setUserData({
+              type: "UPDATE_VALUE",
+              payload: { key: "birthday", value: event.target.value },
+            })
+          }
           locale="fr"
           dateFormat="d MMM yyyy"
           maxDate={Date.now()}
